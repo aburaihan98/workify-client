@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { saveUsr } from "../../api/utils.";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function Login() {
   const { signInUser, loginWithGoogle } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,16 +30,15 @@ export default function Login() {
   };
 
   // google login
-  const handleGoogleLogin = () => {
-    const result = loginWithGoogle()
-      .then(async () => {
-        navigate(location.state ? location.state : "/");
-        await saveUsr(result?.user);
-        toast.success(" Your login successful by Google");
-      })
-      .catch(() => {
-        toast.error("Enter your valid email");
-      });
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await loginWithGoogle();
+      await saveUsr(result);
+      toast.success("Your login was successful with Google");
+      navigate(location.state ? location.state : "/");
+    } catch (error) {
+      toast.error("Error: " + error.message);
+    }
   };
 
   return (

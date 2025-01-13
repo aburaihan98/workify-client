@@ -1,13 +1,14 @@
 import React from "react";
-import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImageUrl } from "../../api/utils.";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "./../../hooks/useAuth";
 
 const RegistrationPage = () => {
   const { createUser, loginWithGoogle, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,26 +44,47 @@ const RegistrationPage = () => {
       // sign in
       await createUser(email, password);
       // update user
-      await updateUserProfile(name, imageUrl);
-      // save user info in db
-      navigate(location.state ? location.state : "/");
-      toast.success("Signup Successful");
+      await updateUserProfile(name, imageUrl)
+        .then(() => {
+          const userInfo = {
+            name,
+            email,
+            password,
+            role,
+            bankAccountNo,
+            salary,
+            designation,
+            photo: imageUrl,
+          };
+          axiosPublic
+            .post(`/users/${email}`, userInfo)
+            .then(() => {
+              navigate(location.state ? location.state : "/");
+              toast.success("Signup Successful");
+            })
+            .catch((error) => {
+              toast.error("Error saving user info: " + error.message);
+            });
+        })
+        .catch((error) => {
+          toast.error("Error updating profile: " + error.message);
+        });
     } catch (error) {
       toast.error(error.message);
     }
   };
 
   // google login
-  const handleGoogleLogin = () => {
-    const result = loginWithGoogle()
-      .then(async () => {
-        navigate(location.state ? location.state : "/");
-        toast.success(" Your login successful by Google");
-      })
-      .catch(() => {
-        toast.error("Enter your valid email");
-      });
-  };
+  // const handleGoogleLogin = () => {
+  //   const result = loginWithGoogle()
+  //     .then(async () => {
+  //       navigate(location.state ? location.state : "/");
+  //       toast.success(" Your login successful by Google");
+  //     })
+  //     .catch(() => {
+  //       toast.error("Enter your valid email");
+  //     });
+  // };
 
   return (
     <div className="max-w-lg mx-auto p-6">
@@ -190,13 +212,13 @@ const RegistrationPage = () => {
           </button>
         </div>
       </form>
-      <button
+      {/* <button
         onClick={handleGoogleLogin}
         className="btn bg-primary text-white w-full py-3  mt-4 border border-primaryColor rounded-md flex items-center justify-center gap-2 text-primaryColor font-semibold text-xl mb-2 hover:bg-blue-900 "
       >
         <FaGoogle />
         Login with Google
-      </button>
+      </button> */}
       <p className="px-6 font-semibold text-sm text-center text-gray-600 mt-6">
         Already have an account?{" "}
         <Link

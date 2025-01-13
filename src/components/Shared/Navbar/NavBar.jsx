@@ -27,7 +27,7 @@ const Navbar = () => {
           className="flex items-center gap-2 text-blue-600 font-bold text-lg"
         >
           <img src="/logo.png" alt="Company Logo" className="h-8 w-8" />
-          Company
+          Workify
         </NavLink>
 
         {/* Desktop Navigation */}
