@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -10,12 +11,28 @@ const RegistrationPage = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
+  // get all fired user
+  const { data: firedUser = [] } = useQuery({
+    queryKey: ["firedUsers"],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get("/firedUser");
+      return data;
+    },
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
 
-    const name = form.name.value;
     const email = form.email.value;
+
+    // check user email
+    const isTrue = firedUser.some((user) => user?.email === email);
+    if (isTrue) {
+      toast.error("This user has already been fired.");
+    }
+
+    const name = form.name.value;
     const password = form.password.value;
     const role = form.role.value;
     const bankAccountNo = form.bankAccountNo.value;

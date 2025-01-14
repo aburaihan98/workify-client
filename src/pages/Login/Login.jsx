@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -16,10 +17,25 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // get all fired user
+  const { data: firedUser = [] } = useQuery({
+    queryKey: ["firedUsers"],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get("/firedUser");
+      return data;
+    },
+  });
+
   // email password  login
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    // check user email
+    const isTrue = firedUser.some((user) => user?.email === email);
+    if (isTrue) {
+      toast.error("This user has already been fired.");
+    }
 
     signInUser(email, password)
       .then(() => {
