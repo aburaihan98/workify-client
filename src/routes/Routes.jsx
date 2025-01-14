@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import VerifiedEmployees from "../pages/Dashboard/Admin/VerifiedEmployees";
+import WorkSheet from "../pages/Dashboard/Employee/WorkSheet";
 import ErrorPage from "../pages/ErrorPage";
-import Login from "../pages/Login/Login";
 import Payment from "../pages/Payment/Payment";
-import Register from "../pages/SignUp/Register";
+import RegistrationPage from "../pages/SignUp/Register";
 import DashboardLayout from "./../layouts/DashboardLayout";
+import Login from "./../pages/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -13,14 +15,6 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
       {
         path: "/contact",
         element: <ContactUs />,
@@ -32,10 +26,27 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <RegistrationPage />,
+  },
+  {
+    path: "/dashboard/",
     element: <DashboardLayout />,
     children: [
       // admin routes
+      {
+        path: "verifiedEmployees",
+        element: <VerifiedEmployees />,
+      },
+      //
+      {
+        path: "workSheet",
+        element: <WorkSheet />,
+      },
     ],
   },
 ]);
