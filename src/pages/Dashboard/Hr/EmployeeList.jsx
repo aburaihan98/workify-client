@@ -1,3 +1,10 @@
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
+} from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import {
   flexRender,
@@ -8,16 +15,21 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 function EmployeeList() {
   const axiosSecure = useAxiosSecure();
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
+  // modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
 
-  const { data: employees = [] } = useQuery({
+  // all employees data
+  const { data: employees = [], refetch } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/employees");
@@ -25,10 +37,22 @@ function EmployeeList() {
     },
   });
 
+  // toggle Verification
   const toggleVerification = async (id, isVerified) => {
-    await axiosSecure.patch(`/employees/${id}`, { isVerified: !isVerified });
+    const { data } = await axiosSecure.patch(`/employees/${id}`, {
+      isVerified: !isVerified,
+    });
+    if (data?.modifiedCount > 0) {
+      refetch();
+      toast.success(
+        `Employee verification status successfully ${
+          isVerified ? "removed" : "updated"
+        }!`
+      );
+    }
   };
 
+  // ReactTable columns
   const columns = [
     { header: "Name", accessorKey: "name" },
     { header: "Email", accessorKey: "email" },
@@ -50,18 +74,6 @@ function EmployeeList() {
     },
     { header: "Bank Account", accessorKey: "bankAccountNo" },
     { header: "Salary", accessorKey: "salary" },
-    { header: "Designation", accessorKey: "designation" },
-    {
-      header: "Photo",
-      accessorKey: "photo",
-      cell: ({ row }) => (
-        <img
-          src={row.original.photo}
-          alt={row.original.name}
-          className="w-12 h-12 rounded-full"
-        />
-      ),
-    },
     {
       header: "Pay",
       cell: ({ row }) => (
@@ -69,15 +81,15 @@ function EmployeeList() {
           onClick={() => {
             if (row.original.isVerified) {
               setSelectedEmployee(row.original);
-              setModalOpen(true);
+              handleOpen();
             } else {
-              alert("Only verified employees can be paid.");
+              toast.warning("Only verified employees can be paid.");
             }
           }}
           disabled={!row.original.isVerified}
           className={`px-4 py-2 rounded ${
             row.original.isVerified
-              ? "bg-blue-500 hover:bg-blue-600"
+              ? "bg-primary hover:bg-blue-900"
               : "bg-gray-400 cursor-not-allowed"
           }`}
         >
@@ -85,8 +97,19 @@ function EmployeeList() {
         </button>
       ),
     },
+    {
+      header: "Details",
+      cell: ({ row }) => (
+        <Link to={`/dashboard/employee-details/${row.original._id}`}>
+          <button className="px-4 py-2 rounded bg-blue-900 hover:bg-primary text-white">
+            Details
+          </button>
+        </Link>
+      ),
+    },
   ];
 
+  // ReactTable
   const table = useReactTable({
     data: employees,
     columns,
@@ -95,6 +118,29 @@ function EmployeeList() {
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
+
+  // handlePay
+  const handlePay = () => {
+    const payInfo = {
+      ...selectedEmployee,
+      month,
+      year,
+      isPaid: false,
+      createdAt: new Date(),
+    };
+
+    // post payroll
+    axiosSecure
+      .post("/payroll", payInfo)
+      .then((result) => {
+        if (result?.data?.insertedId) {
+          toast.success("Pay request submitted successfully!");
+        }
+      })
+      .catch((error) => {
+        toast.error(error?.message);
+      });
+  };
 
   return (
     <div className="w-full p-6 bg-gray-100">
@@ -128,52 +174,113 @@ function EmployeeList() {
       </table>
 
       {/* Modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Pay Employee</h2>
-            <div className="mb-4">
-              <p>
-                <strong>Name:</strong> {selectedEmployee?.name}
-              </p>
-              <p>
-                <strong>Salary:</strong> {selectedEmployee?.salary}
-              </p>
-            </div>
-            <input
-              type="text"
-              placeholder="Month"
-              value={month}
-              onChange={(e) => setMonth(e.target.value)}
-              className="block w-full border border-gray-300 rounded mt-2"
-            />
-            <input
-              type="text"
-              placeholder="Year"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              className="block w-full border border-gray-300 rounded mt-2"
-            />
-            <div className="mt-4 flex justify-end space-x-2">
-              <button
-                onClick={() => setModalOpen(false)}
-                className="bg-red-500 text-white px-4 py-2 rounded"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => {
-                  alert("Payment successful!");
-                  setModalOpen(false);
-                }}
-                className="bg-green-500 text-white px-4 py-2 rounded"
-              >
-                Pay
-              </button>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader>Pay Employee</DialogHeader>
+        <DialogBody>
+          <div className="space-y-4">
+            <p>
+              <strong>Employee Name:</strong> {selectedEmployee?.name}
+            </p>
+            <p>
+              <strong>Salary:</strong> ${selectedEmployee?.salary}
+            </p>
+            <div className="space-y-4">
+              {/* Month Selector */}
+              <div>
+                <label
+                  htmlFor="month"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Month
+                </label>
+                <div className="relative mt-1">
+                  <select
+                    id="month"
+                    value={month}
+                    onChange={(e) => setMonth(e.target.value)}
+                    className="block w-full appearance-none rounded-md border border-gray-300 bg-white py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                  >
+                    <option value="" disabled>
+                      Select a month
+                    </option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                  </select>
+                  {/* Dropdown Icon */}
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg
+                      className="h-4 w-4 text-gray-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Year Input */}
+              <div>
+                <label
+                  htmlFor="year"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Year
+                </label>
+                <div className="relative mt-1">
+                  <input
+                    type="text"
+                    id="year"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
+                    placeholder="Enter year (e.g., 2025)"
+                    className="block w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="gradient"
+            color="green"
+            onClick={() => {
+              handlePay();
+              handleOpen();
+            }}
+            disabled={!selectedEmployee?.isVerified}
+          >
+            Pay
+          </Button>
+        </DialogFooter>
+      </Dialog>
     </div>
   );
 }

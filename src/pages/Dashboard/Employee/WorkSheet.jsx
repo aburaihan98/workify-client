@@ -24,11 +24,13 @@ const WorkSheet = () => {
   const [taskId, setTaskId] = useState("");
 
   //   get all tasks
-  const { data: tasks = [], refetch } = useQuery({
-    queryKey: ["employee"],
+  const { data: employeeWorkSheet = [], refetch } = useQuery({
+    queryKey: ["employeeWorkSheet"],
     enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/employees/${user?.email}`);
+      const { data } = await axiosSecure.get(
+        `/employeeWorkSheet/${user?.email}`
+      );
       return data;
     },
   });
@@ -42,15 +44,16 @@ const WorkSheet = () => {
     const hoursWorked = form.hoursWorked.value;
 
     const employeeInfo = {
+      name: user?.displayName,
       email: user?.email,
-      task,
+      tasks: task,
       hoursWorked,
       selectedDate,
+      month: selectedDate.toLocaleString("default", { month: "long" }),
     };
-    console.log(employeeInfo);
 
     axiosSecure
-      .post("/employees", employeeInfo)
+      .post("/employeeWorkSheet", employeeInfo)
       .then((result) => {
         if (result?.data?.insertedId) {
           refetch();
@@ -64,7 +67,7 @@ const WorkSheet = () => {
 
   //   edit task
   const handleEdit = (id) => {
-    const taskToEdit = tasks.find((task) => task._id === id);
+    const taskToEdit = employeeWorkSheet.find((task) => task._id === id);
     setTaskValue(taskToEdit?.task);
     setHoursWorkedValue(taskToEdit?.hoursWorked);
     setSelectedDate(new Date(taskToEdit.selectedDate));
@@ -81,17 +84,17 @@ const WorkSheet = () => {
 
     const updatedTask = {
       email: user?.email,
-      task: taskValue,
+      workSheet: taskValue,
       hoursWorked: hoursWorkedValue,
       selectedDate,
     };
 
     axiosSecure
-      .put(`/employees/${taskId}`, updatedTask)
+      .put(`/employeeWorkSheet/${taskId}`, updatedTask)
       .then((result) => {
         if (result.data.modifiedCount) {
           refetch();
-          toast.success("Task updated successfully!");
+          toast.success("WorkSheet updated successfully!");
         }
       })
       .catch((error) => {
@@ -104,7 +107,7 @@ const WorkSheet = () => {
   // Handle task delete
   const handleDelete = (id) => {
     axiosSecure
-      .delete(`/employees/${id}`)
+      .delete(`/employeeWorkSheet/${id}`)
       .then((result) => {
         if (result.data.deletedCount) {
           refetch();
@@ -165,11 +168,11 @@ const WorkSheet = () => {
           </tr>
         </thead>
         <tbody>
-          {tasks?.map((task, index) => (
+          {employeeWorkSheet?.map((task, index) => (
             <tr key={task._id}>
               <td className="border p-4 text-center">{index}</td>
               <td className="border p-4 text-center">{task.email}</td>
-              <td className="border p-4 text-center">{task.task}</td>
+              <td className="border p-4 text-center">{task.tasks}</td>
               <td className="border p-4 text-center">{task.hoursWorked}</td>
               <td className="border p-4 text-center">
                 {new Date(task.selectedDate).toISOString().split("T")[0]}

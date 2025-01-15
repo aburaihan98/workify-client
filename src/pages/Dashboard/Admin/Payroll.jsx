@@ -1,38 +1,30 @@
-function Payroll() {
-  // const [employees, setEmployees] = useState([
-  //     {
-  //       id: 1,
-  //       name: "John Doe",
-  //       salary: "$3000",
-  //       month: "January",
-  //       year: "2025",
-  //       paymentDate: "",
-  //       isPaid: false,
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "Jane Smith",
-  //       salary: "$3200",
-  //       month: "January",
-  //       year: "2025",
-  //       paymentDate: "",
-  //       isPaid: false,
-  //     },
-  //   ]);
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-  //   const handlePayment = (id) => {
-  //     setEmployees((prev) =>
-  //       prev.map((employee) =>
-  //         employee.id === id
-  //           ? {
-  //               ...employee,
-  //               paymentDate: new Date().toLocaleDateString(),
-  //               isPaid: true,
-  //             }
-  //           : employee
-  //       )
-  //     );
-  //   };
+function Payroll() {
+  const axiosSecure = useAxiosSecure();
+
+  const { data: payrollEmployees = [], refetch } = useQuery({
+    queryKey: ["payrollEmployees"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get("/payroll");
+      return data;
+    },
+  });
+
+  const handlePayment = (id) => {
+    axiosSecure
+      .patch(`/payroll/${id}`)
+      .then((result) => {
+        if (result?.data?.modifiedCount > 0) {
+          toast.success("Payment successful!");
+          refetch();
+        }
+      })
+      .catch((error) => {
+        toast.error(error?.message);
+      });
+  };
 
   return (
     <div className="w-11/12 m-auto bg-gray-100 p-6 rounded-lg shadow-md">
@@ -52,8 +44,8 @@ function Payroll() {
           </tr>
         </thead>
         <tbody className="text-gray-600">
-          {/* {employees.map((employee) => (
-            <tr key={employee.id} className="border-b hover:bg-gray-100">
+          {payrollEmployees.map((employee) => (
+            <tr key={employee._id} className="border-b hover:bg-gray-100">
               <td className="py-4 px-6">{employee.name}</td>
               <td className="py-4 px-6">{employee.salary}</td>
               <td className="py-4 px-6">{employee.month}</td>
@@ -65,7 +57,7 @@ function Payroll() {
               </td>
               <td className="py-4 px-6 text-center">
                 <button
-                  onClick={() => handlePayment(employee.id)}
+                  onClick={() => handlePayment(employee._id)}
                   className={`px-4 py-2 rounded-md text-white ${
                     employee.isPaid
                       ? "bg-gray-400 cursor-not-allowed"
@@ -77,7 +69,7 @@ function Payroll() {
                 </button>
               </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
     </div>
