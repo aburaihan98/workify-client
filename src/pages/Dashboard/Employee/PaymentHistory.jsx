@@ -19,43 +19,57 @@ function PaymentHistory() {
     },
   });
 
-  console.log(paymentHistory);
-
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Payment History</h1>
+    <div className="p-6 max-w-7xl mx-auto bg-white shadow-lg rounded-lg">
+      <h1 className="text-4xl font-semibold text-gray-800 mb-8 text-center">
+        Payment History
+      </h1>
 
       {/* Payment History Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-lg shadow-md bg-white">
         <table className="min-w-full table-auto border-collapse border border-gray-200">
-          <thead>
+          <thead className="bg-gray-100">
             <tr>
-              <th className="px-4 py-2 border-b">Month</th>
-              <th className="px-4 py-2 border-b">Year</th>
-              <th className="px-4 py-2 border-b">Amount</th>
-              <th className="px-4 py-2 border-b">Transaction ID</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
+                Month
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
+                Year
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
+                Amount
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
+                Transaction ID
+              </th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan="4" className="text-center py-4">
-                  Loading...
+                <td colSpan="4" className="text-center py-4 text-gray-500">
+                  <span className="animate-pulse">Loading...</span>
                 </td>
               </tr>
             ) : paymentHistory.length === 0 ? (
               <tr>
-                <td colSpan="4" className="text-center py-4">
+                <td colSpan="4" className="text-center py-4 text-gray-500">
                   No payment history found.
                 </td>
               </tr>
             ) : (
               paymentHistory.map((payment) => (
-                <tr key={payment._id}>
-                  <td className="px-4 py-2 border-b">{payment.month}</td>
-                  <td className="px-4 py-2 border-b">{payment.year}</td>
-                  <td className="px-4 py-2 border-b">{payment.amount}</td>
-                  <td className="px-4 py-2 border-b">
+                <tr key={payment._id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
+                    {payment.month}
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
+                    {payment.year}
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
+                    {payment.salary}
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
                     {payment.transactionId}
                   </td>
                 </tr>
@@ -66,24 +80,24 @@ function PaymentHistory() {
       </div>
 
       {/* Pagination Controls */}
-      {paymentHistory.length > 0 && (
-        <div className="mt-4 flex justify-between items-center">
+      {/* {paymentHistory.length > 0 && (
+        <div className="mt-6 flex justify-between items-center">
           <button
             onClick={handlePrevPage}
-            className="bg-gray-300 text-gray-700 py-2 px-4 rounded"
+            className="bg-gray-300 text-gray-700 py-2 px-6 rounded-lg hover:bg-gray-400 transition-colors duration-300"
             disabled={currentPage === 1}
           >
             Previous
           </button>
           <button
             onClick={handleNextPage}
-            className="bg-gray-300 text-gray-700 py-2 px-4 rounded"
+            className="bg-gray-300 text-gray-700 py-2 px-6 rounded-lg hover:bg-gray-400 transition-colors duration-300"
             disabled={paymentHistory.length < perPage}
           >
             Next
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
