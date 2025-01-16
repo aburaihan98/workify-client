@@ -120,7 +120,7 @@ const WorkSheet = () => {
   };
 
   return (
-    <div className="container mx-auto py-6">
+    <div className="min-h-screen py-6">
       {/* Form Section */}
       <form
         onSubmit={handleAddSubmit}
@@ -201,9 +201,9 @@ const WorkSheet = () => {
       <Dialog open={open} handler={handleOpen} className="max-w-4xl w-full">
         <DialogHeader>Edit Task</DialogHeader>
         <DialogBody>
-          <form onSubmit={handleUpdate} className="flex flex-col gap-4 mb-8">
+          <form onSubmit={handleUpdate} className="flex flex-row gap-4 mb-8">
             <select
-              className="p-2 border rounded w-full"
+              className="p-2 border rounded"
               name="task"
               value={taskValue}
               onChange={(e) => setTaskValue(e.target.value)}
@@ -219,7 +219,7 @@ const WorkSheet = () => {
             <input
               type="number"
               placeholder="Hours Worked"
-              className="p-2 border rounded w-full"
+              className="p-2 border rounded"
               name="hoursWorked"
               value={hoursWorkedValue}
               onChange={(e) => setHoursWorkedValue(e.target.value)}
@@ -242,7 +242,7 @@ const WorkSheet = () => {
             <span>Cancel</span>
           </Button>
           <Button variant="gradient" color="green" onClick={handleUpdate}>
-            <span>Confirm</span>
+            <span>update</span>
           </Button>
         </DialogFooter>
       </Dialog>

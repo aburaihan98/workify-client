@@ -9,6 +9,7 @@ import EmployeeDetails from "../pages/Dashboard/Hr/EmployeeDetails";
 import EmployeeList from "../pages/Dashboard/Hr/EmployeeList";
 import Progress from "../pages/Dashboard/Hr/Progress";
 import ErrorPage from "../pages/ErrorPage";
+import Home from "../pages/Home/Home";
 import Payment from "../pages/Payment/Payment";
 import RegistrationPage from "../pages/SignUp/Register";
 import DashboardLayout from "./../layouts/DashboardLayout";
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "/",
+        element: <Home />,
+      },
+      {
         path: "/contact",
         element: <ContactUs />,
       },
@@ -28,15 +33,15 @@ const router = createBrowserRouter([
         path: "/payment",
         element: <Payment />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <RegistrationPage />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <RegistrationPage />,
   },
   {
     path: "/dashboard/",
@@ -44,7 +49,7 @@ const router = createBrowserRouter([
     children: [
       // admin routes
       {
-        path: "verifiedEmployees",
+        path: "all-employee-list",
         element: <VerifiedEmployees />,
       },
       {
@@ -66,7 +71,7 @@ const router = createBrowserRouter([
       },
       //employee
       {
-        path: "workSheet",
+        path: "work-sheet",
         element: <WorkSheet />,
       },
       {

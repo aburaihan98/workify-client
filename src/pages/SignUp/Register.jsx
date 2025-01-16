@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { uploadImageUrl } from "../../api/utils.";
@@ -11,28 +11,12 @@ const RegistrationPage = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
-  // get all fired user
-  const { data: firedUser = [] } = useQuery({
-    queryKey: ["firedUsers"],
-    queryFn: async () => {
-      const { data } = await axiosPublic.get("/firedUser");
-      return data;
-    },
-  });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
 
-    const email = form.email.value;
-
-    // check user email
-    const isTrue = firedUser.some((user) => user?.email === email);
-    if (isTrue) {
-      toast.error("This user has already been fired.");
-    }
-
     const name = form.name.value;
+    const email = form.email.value;
     const password = form.password.value;
     const role = form.role.value;
     const bankAccountNo = form.bankAccountNo.value;
@@ -92,16 +76,16 @@ const RegistrationPage = () => {
   };
 
   // google login
-  // const handleGoogleLogin = () => {
-  //   const result = loginWithGoogle()
-  //     .then(async () => {
-  //       navigate(location.state ? location.state : "/");
-  //       toast.success(" Your login successful by Google");
-  //     })
-  //     .catch(() => {
-  //       toast.error("Enter your valid email");
-  //     });
-  // };
+  const handleGoogleLogin = () => {
+    const result = loginWithGoogle()
+      .then(async () => {
+        navigate(location.state ? location.state : "/");
+        toast.success(" Your login successful by Google");
+      })
+      .catch(() => {
+        toast.error("Enter your valid email");
+      });
+  };
 
   return (
     <div className="max-w-lg mx-auto p-6">
@@ -229,13 +213,13 @@ const RegistrationPage = () => {
           </button>
         </div>
       </form>
-      {/* <button
+      <button
         onClick={handleGoogleLogin}
         className="btn bg-primary text-white w-full py-3  mt-4 border border-primaryColor rounded-md flex items-center justify-center gap-2 text-primaryColor font-semibold text-xl mb-2 hover:bg-blue-900 "
       >
         <FaGoogle />
         Login with Google
-      </button> */}
+      </button>
       <p className="px-6 font-semibold text-sm text-center text-gray-600 mt-6">
         Already have an account?{" "}
         <Link

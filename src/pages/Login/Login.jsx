@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
@@ -8,14 +8,11 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function Login() {
-  const { signInUser, loginWithGoogle } = useAuth();
+  const { signInUser, loginWithGoogle, userLogout } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
   const axiosPublic = useAxiosPublic();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   // get all fired user
   const { data: firedUser = [] } = useQuery({
@@ -31,14 +28,18 @@ export default function Login() {
     e.preventDefault();
     e.stopPropagation();
 
-    // check user email
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    // check fired user email
     const isTrue = firedUser.some((user) => user?.email === email);
     if (isTrue) {
       toast.error("This user has already been fired.");
+      return;
     }
 
     signInUser(email, password)
-      .then(() => {
+      .then((result) => {
         navigate(location.state ? location.state : "/");
         toast.success("Your login successful");
       })
@@ -49,6 +50,15 @@ export default function Login() {
   const handleGoogleLogin = async () => {
     try {
       const result = await loginWithGoogle();
+      // check fired user email
+      const isTrue = firedUser.some(
+        (user) => user?.email === result?.user?.email
+      );
+      if (isTrue) {
+        userLogout();
+        toast.error("This user has already been fired.");
+        return;
+      }
       await saveUsr(result);
       toast.success("Your login was successful with Google");
       navigate(location.state ? location.state : "/");
@@ -73,7 +83,6 @@ export default function Login() {
                 type="email"
                 placeholder="Email"
                 name="email"
-                onChange={(e) => setEmail(e.target.value)}
                 className="input input-bordered border w-full p-3 text-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 required
               />
@@ -87,7 +96,6 @@ export default function Login() {
                 type="password"
                 name="password"
                 placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
                 className="input input-bordered border w-full p-3  text-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 required
               />

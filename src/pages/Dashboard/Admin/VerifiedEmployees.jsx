@@ -85,7 +85,7 @@ function VerifiedEmployees() {
 
   return (
     <>
-      <div className="w-11/12 m-auto bg-gray-100 ">
+      <div className="min-h-screen m-auto bg-gray-100 ">
         <h1 className="text-3xl font-semibold text-center mb-6">
           All Verified Employees
         </h1>

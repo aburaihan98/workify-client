@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Logo from "../../../../public/logo.png";
 import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
@@ -19,14 +20,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+    <nav className="bg-blue-50 shadow-md">
+      <div className=" w-11/12 mx-auto flex items-center justify-between py-3">
         {/* Logo */}
         <NavLink
           to="/"
-          className="flex items-center gap-2 text-blue-600 font-bold text-lg"
+          className="flex items-center gap-2 text-primary font-bold text-lg"
         >
-          <img src="/logo.png" alt="Company Logo" className="h-8 w-8" />
+          <img src={Logo} alt="Company Logo" className="h-12 w-12 rounded" />
           Workify
         </NavLink>
 
@@ -36,8 +37,8 @@ const Navbar = () => {
             to="/contact"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-600 font-medium"
-                : "text-gray-700 hover:text-blue-600 font-medium"
+                ? "text-primary font-bold"
+                : "text-gray-700 hover:text-primary font-bold"
             }
           >
             Contact Us
@@ -49,8 +50,8 @@ const Navbar = () => {
               to="/dashboard"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-600 font-medium"
-                  : "text-gray-700 hover:text-blue-600 font-medium"
+                  ? "text-primary font-bold"
+                  : "text-gray-700 hover:text-primary font-bold"
               }
             >
               Dashboard
@@ -85,9 +86,10 @@ const Navbar = () => {
             <Menu as="div" className="relative">
               <MenuHandler>
                 <Avatar
-                  src={user.photoURL || "https://via.placeholder.com/150"}
+                  src={user.photoURL}
                   alt="User"
                   className="cursor-pointer"
+                  referrerPolicy="no-referrer"
                 />
               </MenuHandler>
               <MenuList className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">

@@ -18,13 +18,15 @@ export const uploadImageUrl = async (image) => {
 
 // save user in mongodb
 export const saveUsr = async (result) => {
+  const userInfo = {
+    name: result?.user?.displayName,
+    email: result?.user?.email,
+    photo: result?.user?.photoURL,
+    role: "employee",
+  };
+
   axiosPublic.post(
     `${import.meta.env.VITE_API_URL}/users/${result?.user?.email}`,
-    {
-      name: result?.user?.displayName,
-      email: result?.user?.email,
-      photo: result?.user?.photoURL,
-      role: "employee",
-    }
+    userInfo
   );
 };
