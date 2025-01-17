@@ -1,26 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useRole from "../../../hooks/useRole";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const Sidebar = () => {
-  const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const [role, isLoading] = useRole();
 
-  const { data: loggedInUser = {} } = useQuery({
-    queryKey: ["loggedInUser"],
-    enabled: !!user?.email,
-    queryFn: async () => {
-      const { data } = await axiosSecure.get(`/employees/${user?.email}`);
-      return data;
-    },
-  });
-
-  const role = loggedInUser?.role;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
-    <aside className="h-full bg-gray-100 text-gray-800">
-      <div className="p-8 text-center text-2xl font-bold border-b border-gray-600">
+    <aside className="min-h-screen bg-gray-100 text-gray-800">
+      <div className="p-10 text-center text-2xl font-bold border-b border-gray-600">
         Dashboard
       </div>
       <nav className="mt-4">

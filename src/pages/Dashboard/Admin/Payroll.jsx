@@ -28,8 +28,8 @@ function Payroll() {
   };
 
   return (
-    <div className=" min-h-screen m-auto bg-gray-100 p-6 rounded-lg shadow-md">
-      <h1 className="text-3xl font-semibold text-center mb-6">
+    <div className=" min-h-screen m-auto bg-gray-100 shadow-md">
+      <h1 className="text-3xl font-semibold text-center py-9 my-0.5">
         Employee Payment Requests
       </h1>
 

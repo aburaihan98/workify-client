@@ -26,7 +26,7 @@ function Progress() {
   });
 
   return (
-    <div className="p-8 min-h-screen mx-auto bg-white shadow-lg rounded-lg">
+    <div className="p-8 min-h-screen mx-auto bg-white shadow-lg ">
       <h1 className="text-4xl font-semibold mb-8 text-center text-gray-800">
         Employee Work Progress
       </h1>

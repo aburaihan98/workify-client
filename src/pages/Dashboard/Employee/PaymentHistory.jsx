@@ -21,7 +21,7 @@ function PaymentHistory() {
 
   return (
     <div className="p-6 min-h-screen mx-auto bg-white shadow-lg rounded-lg">
-      <h1 className="text-4xl font-semibold text-gray-800 mb-8 text-center">
+      <h1 className="text-4xl font-semibold text-gray-800 mb-8 py-2 text-center">
         Payment History
       </h1>
 

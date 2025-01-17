@@ -86,11 +86,11 @@ function VerifiedEmployees() {
   return (
     <>
       <div className="min-h-screen m-auto bg-gray-100 ">
-        <h1 className="text-3xl font-semibold text-center mb-6">
+        <h1 className="text-3xl font-semibold text-center py-9 my-0.5">
           All Verified Employees
         </h1>
 
-        <table className="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full table-auto bg-white shadow-md overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
               <th className="py-3 px-6 text-left">Name</th>

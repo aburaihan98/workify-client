@@ -1,9 +1,28 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../components/Dashboard/Sidebar/Sidebar";
 import Footer from "../components/Shared/Footer/Footer";
+import LoadingSpinner from "../components/Shared/LoadingSpinner";
 import Navbar from "../components/Shared/Navbar/NavBar";
+import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
+  const navigate = useNavigate();
+
+  const [role, isLoading] = useRole();
+
+  useEffect(() => {
+    if (role === "admin") {
+      navigate("/dashboard/all-employee-list");
+    } else if (role === "hr") {
+      navigate("/dashboard/employee-list");
+    } else if (role === "employee") {
+      navigate("/dashboard/work-sheet");
+    }
+  }, [role, navigate]);
+
+  if (isLoading) return <LoadingSpinner />;
+
   return (
     <div>
       <Navbar />

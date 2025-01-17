@@ -120,40 +120,42 @@ const WorkSheet = () => {
   };
 
   return (
-    <div className="min-h-screen py-6">
+    <div className="min-h-screen">
       {/* Form Section */}
-      <form
-        onSubmit={handleAddSubmit}
-        className="flex justify-center space-x-4 mb-8"
-      >
-        <select className="p-2 border rounded" name="task" required>
-          <option value="">Select Task</option>
-          <option value="Sales">Sales</option>
-          <option value="Support">Support</option>
-          <option value="Content">Content</option>
-          <option value="Paper-work">Paper-work</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Development">Development</option>
-        </select>
-        <input
-          type="number"
-          placeholder="Hours Worked"
-          className="p-2 border rounded"
-          name="hoursWorked"
-          required
-        />
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-          className="p-2 border rounded"
-        />
-        <button
-          type="submit"
-          className="bg-primary hover:bg-blue-900 text-white px-4 py-2 rounded"
+      <div className="py-8">
+        <form
+          onSubmit={handleAddSubmit}
+          className="flex justify-center space-x-4 mb-1.5"
         >
-          Add
-        </button>
-      </form>
+          <select className="p-2 border rounded" name="task" required>
+            <option value="">Select Task</option>
+            <option value="Sales">Sales</option>
+            <option value="Support">Support</option>
+            <option value="Content">Content</option>
+            <option value="Paper-work">Paper-work</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Development">Development</option>
+          </select>
+          <input
+            type="number"
+            placeholder="Hours Worked"
+            className="p-2 border rounded"
+            name="hoursWorked"
+            required
+          />
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            className="p-2 border rounded"
+          />
+          <button
+            type="submit"
+            className="bg-primary hover:bg-blue-900 text-white px-4 py-2 rounded"
+          >
+            Add
+          </button>
+        </form>
+      </div>
 
       {/* Table Section */}
       <table className="min-w-full table-auto border-collapse">
