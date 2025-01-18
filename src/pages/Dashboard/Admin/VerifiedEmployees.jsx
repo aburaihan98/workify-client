@@ -94,24 +94,25 @@ function VerifiedEmployees() {
   return (
     <>
       <div className="min-h-screen m-auto bg-gray-100 ">
-        <h1 className="text-3xl font-semibold text-center py-9 my-0.5">
-          All Verified Employees
-        </h1>
-
-        {/* Toggle Button */}
-        <div className="text-center mb-4">
-          <button
-            onClick={() =>
-              setViewMode((prevMode) =>
-                prevMode === "table" ? "grid" : "table"
-              )
-            }
-            className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-          >
-            {viewMode === "table"
-              ? "Switch to Grid View"
-              : "Switch to Table View"}
-          </button>
+        <div className="flex justify-around items-center">
+          <h1 className="text-3xl font-semibold text-center py-9 my-0.5">
+            All Verified Employees
+          </h1>
+          {/* Toggle Button */}
+          <div className="text-center mb-4">
+            <button
+              onClick={() =>
+                setViewMode((prevMode) =>
+                  prevMode === "table" ? "grid" : "table"
+                )
+              }
+              className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+            >
+              {viewMode === "table"
+                ? "Switch to Grid View"
+                : "Switch to Table View"}
+            </button>
+          </div>
         </div>
 
         {/* Conditional Rendering */}

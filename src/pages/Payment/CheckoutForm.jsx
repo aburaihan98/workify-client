@@ -1,5 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -8,11 +10,15 @@ const CheckoutForm = () => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const { id } = useParams();
+  const { state } = useLocation();
+  const { email, month, year, salary } = state || {};
+  const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
 
-  const totalPrice = 1;
+  const totalPrice = salary;
 
   useEffect(() => {
     if (totalPrice > 0) {
@@ -67,7 +73,42 @@ const CheckoutForm = () => {
 
     console.log("confirm error", confirmError);
     console.log("payment intent", paymentIntent);
+
+    if (paymentIntent?.id) {
+      // payroll
+      axiosSecure
+        .patch(`/payroll/${id}`)
+        .then((result) => {
+          if (result?.data?.modifiedCount > 0) {
+            toast.success("Payment successful!");
+          }
+        })
+        .catch((error) => {
+          toast.error(error?.message);
+        });
+      // Payment history post
+      const paymentInfo = {
+        email,
+        month,
+        year,
+        salary,
+        transactionId: paymentIntent?.id,
+      };
+      axiosSecure
+        .post("/paymentHistory", paymentInfo)
+        .then((result) => {
+          if (result?.data?.insertedId) {
+            toast.success("Payment history saved successfully!");
+          }
+        })
+        .catch((error) => {
+          toast.error(error?.message);
+        });
+    }
   };
+
+  // handlePayment
+  const handlePayment = (id) => {};
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
@@ -100,6 +141,7 @@ const CheckoutForm = () => {
         )}
 
         <button
+          onClick={() => handlePayment(id)}
           type="submit"
           disabled={!stripe || isProcessing}
           className={`w-full py-2 bg-blue-500 text-white font-semibold rounded-lg focus:outline-none ${

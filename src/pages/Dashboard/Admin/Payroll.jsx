@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 function Payroll() {
@@ -13,21 +13,6 @@ function Payroll() {
       return data;
     },
   });
-
-  // handlePayment
-  const handlePayment = (id) => {
-    axiosSecure
-      .patch(`/payroll/${id}`)
-      .then((result) => {
-        if (result?.data?.modifiedCount > 0) {
-          toast.success("Payment successful!");
-          refetch();
-        }
-      })
-      .catch((error) => {
-        toast.error(error?.message);
-      });
-  };
 
   return (
     <div className=" min-h-screen m-auto bg-gray-100 shadow-md">
@@ -59,17 +44,26 @@ function Payroll() {
                 )}
               </td>
               <td className="py-4 px-6 text-center">
-                <button
-                  onClick={() => handlePayment(employee._id)}
-                  className={`px-4 py-2 rounded-md text-white ${
-                    employee.isPaid
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-green-500 hover:bg-green-600"
-                  }`}
-                  disabled={employee.isPaid}
+                <Link
+                  state={{
+                    salary: employee.salary,
+                    month: employee?.month,
+                    year: employee?.year,
+                    email: employee?.email,
+                  }}
+                  to={`/dashboard/payment/${employee._id}`}
                 >
-                  {employee.isPaid ? "Paid" : "Pay"}
-                </button>
+                  <button
+                    className={`px-4 py-2 rounded-md text-white ${
+                      employee.isPaid
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-green-500 hover:bg-green-600"
+                    }`}
+                    disabled={employee.isPaid}
+                  >
+                    {employee.isPaid ? "Paid" : "Pay"}
+                  </button>
+                </Link>
               </td>
             </tr>
           ))}

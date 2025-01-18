@@ -69,7 +69,6 @@ export default function AuthProvider({ children }) {
           };
 
           const { data } = await axiosPublic.post("/jwt", userInfo);
-          console.log(data);
 
           localStorage.setItem("access-token", data?.token);
         } catch (error) {

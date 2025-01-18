@@ -72,10 +72,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "payment",
+        path: "payment/:id",
         element: (
           <PrivateRoute>
-            <Payment />
+            <AdminRoute>
+              <Payment />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },

@@ -8,7 +8,7 @@ function PaymentHistory() {
   const axiosSecure = useAxiosSecure();
   // pagination
   const [count, setCount] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [itemsParPage, setItemsParPage] = useState(5);
   const numberOfPages = Math.ceil(count / itemsParPage);
   const pages = [...Array(numberOfPages).keys()];
@@ -23,18 +23,20 @@ function PaymentHistory() {
     enabled: !!user?.email,
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/payroll/${user?.email}?page=${currentPage}&limit=${itemsParPage}`
+        `/paymentHistory/${user?.email}?page=${currentPage}&limit=${itemsParPage}`
       );
       return data;
     },
   });
 
   // payment History count query
-  const { data: paymentCount = {} } = useQuery({
-    queryKey: ["paymentCount", user?.email],
+  const { data: paymentHistoryCount = {} } = useQuery({
+    queryKey: ["paymentHistory", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/paymentCount/${user?.email}`);
+      const { data } = await axiosSecure.get(
+        `/paymentHistoryCount/${user?.email}`
+      );
       setCount(data?.count);
       return data;
     },
