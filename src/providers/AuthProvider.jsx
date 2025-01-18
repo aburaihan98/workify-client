@@ -58,11 +58,23 @@ export default function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        const userInfo = {
-          email: currentUser?.email,
-        };
-        const { data } = await axiosPublic.post("/jwt", userInfo);
-        localStorage.setItem("access-token", data?.token);
+        try {
+          const { data: userFromDB } = await axiosPublic.get(
+            `/users/${currentUser?.email}`
+          );
+
+          const userInfo = {
+            email: currentUser?.email,
+            role: userFromDB?.role || "employee",
+          };
+
+          const { data } = await axiosPublic.post("/jwt", userInfo);
+          console.log(data);
+
+          localStorage.setItem("access-token", data?.token);
+        } catch (error) {
+          console.error("Error fetching role or token:", error);
+        }
       } else {
         localStorage.removeItem("access-token");
       }

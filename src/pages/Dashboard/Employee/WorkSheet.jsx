@@ -172,7 +172,7 @@ const WorkSheet = () => {
         <tbody>
           {employeeWorkSheet?.map((task, index) => (
             <tr key={task._id}>
-              <td className="border p-4 text-center">{index}</td>
+              <td className="border p-4 text-center">{index + 1}</td>
               <td className="border p-4 text-center">{task.email}</td>
               <td className="border p-4 text-center">{task.tasks}</td>
               <td className="border p-4 text-center">{task.hoursWorked}</td>
@@ -181,18 +181,18 @@ const WorkSheet = () => {
               </td>
               <td className="border p-4 flex justify-center gap-3 space-x-2">
                 <Button
-                  className="text-blue-500"
+                  className="bg-primary hover:bg-blue-900"
                   onClick={() => handleEdit(task._id)}
-                  variant="gradient"
+                  // variant="gradient"
                 >
                   <FaEdit />
                 </Button>
-                <button
-                  className="text-red-500"
+                <Button
+                  className="bg-red-500"
                   onClick={() => handleDelete(task._id)}
                 >
                   <FaTrashAlt />
-                </button>
+                </Button>
               </td>
             </tr>
           ))}

@@ -15,46 +15,45 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "./../../../components/Shared/LoadingSpinner";
 
 function EmployeeDetails() {
-  const { id } = useParams();
+  const { email } = useParams();
   const axiosSecure = useAxiosSecure();
 
-  const { data: employee = {}, isLoading } = useQuery({
-    queryKey: ["employee", id],
-    enabled: !!id,
+  // payroll
+  const { data: employeesPayroll = [], isLoading } = useQuery({
+    queryKey: ["employeesPayroll", email],
+    enabled: !!email,
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/employees/${id}`);
+      const { data } = await axiosSecure.get(`/employeesPayroll/${email}`);
       return data;
     },
   });
+
+  const userInfo = employeesPayroll.find((user) => user?.email === email);
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
-  const salaryRecords = employee.salaryRecords || [
-    { monthYear: "Jan 2024", salary: 5000 },
-    { monthYear: "Feb 2024", salary: 5200 },
-    { monthYear: "Mar 2024", salary: 5400 },
-  ];
-
-  const chartData = salaryRecords.map((record) => ({
-    monthYear: record.monthYear,
-    salary: record.salary,
+  const chartData = employeesPayroll.map((item) => ({
+    monthYear: `${item.month} ${item.year}`,
+    salary: item.salary,
   }));
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">{employee.name}</h1>
-      <div className="flex items-center mb-4">
-        <img
-          src={employee.photo}
-          alt={employee.name}
-          className="w-24 h-24 rounded-full mr-4"
-        />
-        <div>
-          <p className="text-lg font-medium">
-            Designation: {employee.designation}
-          </p>
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="text-3xl font-bold mb-4">{userInfo.name}</h1>
+        <div className="flex items-center mb-4">
+          <img
+            src={userInfo.photo}
+            alt={userInfo.name}
+            className="w-24 h-24 rounded-full mr-4"
+          />
+          <div>
+            <p className="text-lg font-medium">
+              Designation: {userInfo.designation}
+            </p>
+          </div>
         </div>
       </div>
       <div>

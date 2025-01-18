@@ -1,23 +1,63 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 function PaymentHistory() {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  // pagination
+  const [count, setCount] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsParPage, setItemsParPage] = useState(5);
+  const numberOfPages = Math.ceil(count / itemsParPage);
+  const pages = [...Array(numberOfPages).keys()];
 
+  // payment History query
   const {
     data: paymentHistory = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["paymentHistory", user?.email],
+    queryKey: ["paymentHistory", user?.email, currentPage, itemsParPage],
     enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/payroll/${user?.email}`);
+      const { data } = await axiosSecure.get(
+        `/payroll/${user?.email}?page=${currentPage}&limit=${itemsParPage}`
+      );
       return data;
     },
   });
+
+  // payment History count query
+  const { data: paymentCount = {} } = useQuery({
+    queryKey: ["paymentCount", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/paymentCount/${user?.email}`);
+      setCount(data?.count);
+      return data;
+    },
+  });
+
+  // pagination
+  const handleItemParPage = (e) => {
+    const val = parseInt(e.target.value);
+    setItemsParPage(val);
+    setCurrentPage(0);
+  };
+
+  const handlePrevItem = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextItem = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div className="p-6 min-h-screen mx-auto bg-white shadow-lg rounded-lg">
@@ -80,24 +120,78 @@ function PaymentHistory() {
       </div>
 
       {/* Pagination Controls */}
-      {/* {paymentHistory.length > 0 && (
-        <div className="mt-6 flex justify-between items-center">
+      <div className="flex flex-col items-center mt-8">
+        {/* Current Page Display */}
+        <p className="text-gray-600 text-sm mb-4">
+          Current Page: <span className="font-semibold">{currentPage + 1}</span>
+        </p>
+        {/* Pagination Buttons */}
+        <div className="flex items-center space-x-2">
+          {/* Previous Button */}
           <button
-            onClick={handlePrevPage}
-            className="bg-gray-300 text-gray-700 py-2 px-6 rounded-lg hover:bg-gray-400 transition-colors duration-300"
-            disabled={currentPage === 1}
+            onClick={handlePrevItem}
+            disabled={currentPage === 0}
+            className={`px-4 py-2 rounded-md text-sm font-medium ${
+              currentPage === 0
+                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                : "bg-blue-500 text-white hover:bg-blue-600"
+            }`}
           >
-            Previous
+            Prev
           </button>
+
+          {/* Page Numbers */}
+          {pages.map((page) => (
+            <button
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              className={`px-3 py-1 rounded-md text-sm font-medium ${
+                currentPage === page
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+              }`}
+            >
+              {page + 1}
+            </button>
+          ))}
+
+          {/* Next Button */}
           <button
-            onClick={handleNextPage}
-            className="bg-gray-300 text-gray-700 py-2 px-6 rounded-lg hover:bg-gray-400 transition-colors duration-300"
-            disabled={paymentHistory.length < perPage}
+            onClick={handleNextItem}
+            disabled={currentPage === pages.length - 1}
+            className={`px-4 py-2 rounded-md text-sm font-medium ${
+              currentPage === pages.length - 1
+                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                : "bg-blue-500 text-white hover:bg-blue-600"
+            }`}
           >
             Next
           </button>
         </div>
-      )} */}
+
+        {/* Items Per Page Selector */}
+        <div className="mt-4">
+          <label
+            htmlFor="itemsPerPage"
+            className="text-gray-600 text-sm font-medium mr-2"
+          >
+            Items per page:
+          </label>
+          <select
+            id="itemsPerPage"
+            value={itemsParPage}
+            onChange={handleItemParPage}
+            className="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+      </div>
     </div>
   );
 }

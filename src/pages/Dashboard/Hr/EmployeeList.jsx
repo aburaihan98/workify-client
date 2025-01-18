@@ -100,7 +100,7 @@ function EmployeeList() {
     {
       header: "Details",
       cell: ({ row }) => (
-        <Link to={`/dashboard/employee-details/${row.original._id}`}>
+        <Link to={`/dashboard/employee-details/${row.original.email}`}>
           <button className="px-4 py-2 rounded bg-blue-900 hover:bg-primary text-white">
             Details
           </button>
@@ -120,9 +120,14 @@ function EmployeeList() {
   });
 
   // handlePay
-  const handlePay = () => {
+  const handlePayRequest = () => {
+    const { name, email, designation, photo, salary } = selectedEmployee;
     const payInfo = {
-      ...selectedEmployee,
+      name,
+      email,
+      designation,
+      photo,
+      salary,
       month,
       year,
       isPaid: false,
@@ -138,7 +143,9 @@ function EmployeeList() {
         }
       })
       .catch((error) => {
-        toast.error(error?.message);
+        const errorMessage =
+          error?.response?.data?.message || "Something went wrong!";
+        toast.error(errorMessage);
       });
   };
 
@@ -164,7 +171,7 @@ function EmployeeList() {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id} className="border-b">
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="py-3 px-4">
+                <td key={cell.id} className="py-3 px-4 text-center">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -195,6 +202,7 @@ function EmployeeList() {
                 </label>
                 <div className="relative mt-1">
                   <select
+                    required
                     id="month"
                     value={month}
                     onChange={(e) => setMonth(e.target.value)}
@@ -247,6 +255,7 @@ function EmployeeList() {
                 </label>
                 <div className="relative mt-1">
                   <input
+                    required
                     type="text"
                     id="year"
                     value={year}
@@ -272,7 +281,7 @@ function EmployeeList() {
             variant="gradient"
             color="green"
             onClick={() => {
-              handlePay();
+              handlePayRequest();
               handleOpen();
             }}
             disabled={!selectedEmployee?.isVerified}

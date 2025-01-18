@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 function Payroll() {
   const axiosSecure = useAxiosSecure();
 
+  // payrollEmployees
   const { data: payrollEmployees = [], refetch } = useQuery({
     queryKey: ["payrollEmployees"],
     queryFn: async () => {
@@ -13,6 +14,7 @@ function Payroll() {
     },
   });
 
+  // handlePayment
   const handlePayment = (id) => {
     axiosSecure
       .patch(`/payroll/${id}`)

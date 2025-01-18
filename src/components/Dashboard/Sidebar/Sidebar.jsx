@@ -46,6 +46,18 @@ const Sidebar = () => {
               <Link to="/dashboard/payroll">
                 <li className="px-8 py-2 hover:bg-gray-200">Payroll</li>
               </Link>
+              <Link to="/dashboard/work-sheet">
+                <li className="px-8 py-2 hover:bg-gray-200">Work Sheet</li>
+              </Link>
+              <Link to="/dashboard/payment-history">
+                <li className="px-8 py-2 hover:bg-gray-200">Payment History</li>
+              </Link>
+              <Link to="/dashboard/employee-list">
+                <li className="px-8 py-2 hover:bg-gray-200">Employee List</li>
+              </Link>
+              <Link to="/dashboard/progress">
+                <li className="px-8 py-2 hover:bg-gray-200">Progress</li>
+              </Link>
             </>
           )}
         </ul>
