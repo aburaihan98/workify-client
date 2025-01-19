@@ -18,40 +18,55 @@ function EmployeeDetails() {
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
 
-  // payroll
-  const { data: employeesPayroll = [], isLoading } = useQuery({
-    queryKey: ["employeesPayroll", email],
+  // Details
+  const { data: employeesDetails = {}, isLoading: loadingDetails } = useQuery({
+    queryKey: ["employeesDetails", email],
     enabled: !!email,
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/employeesPayroll/${email}`);
+      const { data } = await axiosSecure.get(`/employeesDetails/${email}`);
       return data;
     },
   });
 
-  const userInfo = employeesPayroll.find((user) => user?.email === email);
+  // paymentHistoryForBarChart
+  const { data: paymentHistoryForBarChart = [], isLoading } = useQuery({
+    queryKey: ["paymentHistoryForBarChart", email],
+    enabled: !!email,
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        `/paymentHistoryForBarChart/${email}`
+      );
+      return data;
+    },
+  });
 
-  if (isLoading) {
+  if (isLoading || loadingDetails) {
     return <LoadingSpinner />;
   }
 
-  const chartData = employeesPayroll.map((item) => ({
+  const chartData = paymentHistoryForBarChart.map((item) => ({
     monthYear: `${item.month} ${item.year}`,
     salary: item.salary,
   }));
 
+  console.log(employeesDetails);
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="text-3xl font-bold mb-4">{userInfo.name}</h1>
-        <div className="flex items-center mb-4">
+      <div className="flex justify-center items-center m-4">
+        <div className="flex items-center mb-2">
           <img
-            src={userInfo.photo}
-            alt={userInfo.name}
-            className="w-24 h-24 rounded-full mr-4"
+            src={employeesDetails?.photo}
+            alt={employeesDetails?.name}
+            className="w-16 h-16 rounded-full mr-4"
+            referrerPolicy="no-referrer"
           />
+        </div>
+        <div>
+          <h1 className="text-xl font-bold">{employeesDetails?.name}</h1>
           <div>
             <p className="text-lg font-medium">
-              Designation: {userInfo.designation}
+              Designation: {employeesDetails?.designation}
             </p>
           </div>
         </div>

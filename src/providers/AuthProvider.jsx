@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 
 import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import auth from "../firebase/firebase";
 import useAxiosPublic from "./../hooks/useAxiosPublic";
 
@@ -72,7 +73,7 @@ export default function AuthProvider({ children }) {
 
           localStorage.setItem("access-token", data?.token);
         } catch (error) {
-          console.error("Error fetching role or token:", error);
+          toast.error("Error fetching role or token:", error);
         }
       } else {
         localStorage.removeItem("access-token");

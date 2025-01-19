@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Payroll from "../pages/Dashboard/Admin/Payroll";
 import VerifiedEmployees from "../pages/Dashboard/Admin/VerifiedEmployees";
+import VisitorOpinions from "../pages/Dashboard/Admin/VisitorOpinions";
 import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory";
 import WorkSheet from "../pages/Dashboard/Employee/WorkSheet";
 import EmployeeDetails from "../pages/Dashboard/Hr/EmployeeDetails";
@@ -15,6 +16,7 @@ import DashboardLayout from "./../layouts/DashboardLayout";
 import Login from "./../pages/Login/Login";
 import Payment from "./../pages/Payment/Payment";
 import AdminRoute from "./AdminRoute";
+import EmployeeRoute from "./EmployeeRoute";
 import HrRoute from "./HrRoute";
 import PrivateRoute from "./PrivateRoute";
 
@@ -72,6 +74,16 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "contact",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <VisitorOpinions />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "payment/:id",
         element: (
           <PrivateRoute>
@@ -93,7 +105,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "employee-details/:email",
+        path: "details/:email",
         element: (
           <PrivateRoute>
             <HrRoute>
@@ -117,7 +129,9 @@ const router = createBrowserRouter([
         path: "work-sheet",
         element: (
           <PrivateRoute>
-            <WorkSheet />
+            <EmployeeRoute>
+              <WorkSheet />
+            </EmployeeRoute>
           </PrivateRoute>
         ),
       },
@@ -125,7 +139,9 @@ const router = createBrowserRouter([
         path: "payment-history",
         element: (
           <PrivateRoute>
-            <PaymentHistory />
+            <EmployeeRoute>
+              <PaymentHistory />
+            </EmployeeRoute>
           </PrivateRoute>
         ),
       },

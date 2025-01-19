@@ -11,7 +11,11 @@ function Progress() {
     queryKey: ["employeeName"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/employeeWorkSheet/name");
-      return data;
+      // Remove duplicate names using Set
+      const uniqueNames = Array.from(
+        new Map(data.map((item) => [item.name, item])).values()
+      );
+      return uniqueNames;
     },
   });
 
@@ -19,7 +23,7 @@ function Progress() {
     queryKey: ["employeeWorkSheet", selectedEmployee, selectedMonth],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/employeeWorkSheet?employeeId=${selectedEmployee}&month=${selectedMonth}`
+        `/employeeWorkSheet?employeeName=${selectedEmployee}&month=${selectedMonth}`
       );
       return data;
     },
@@ -43,9 +47,9 @@ function Progress() {
             value={selectedEmployee}
             onChange={(e) => setSelectedEmployee(e.target.value)}
           >
-            <option value="">All Employees</option>
+            <option value="allEmployees">All Employees</option>
             {employeeName.map((employee) => (
-              <option key={employee._id} value={employee._id}>
+              <option key={employee._id} value={employee.name}>
                 {employee.name}
               </option>
             ))}

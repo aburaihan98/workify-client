@@ -117,76 +117,85 @@ function VerifiedEmployees() {
 
         {/* Conditional Rendering */}
         {viewMode === "table" ? (
-          <table className="min-w-full table-auto bg-white shadow-md overflow-hidden">
-            <thead className="bg-gray-200 text-gray-700">
-              <tr>
-                <th className="py-3 px-6 text-left">Name</th>
-                <th className="py-3 px-6 text-left">Designation</th>
-                <th className="py-3 px-6 text-center">Make HR</th>
-                <th className="py-3 px-6 text-center">Fire</th>
-                <th className="py-3 px-6 text-center">Salary</th>
-                <th className="py-3 px-6 text-center">Salary Adjustment</th>
-              </tr>
-            </thead>
-            <tbody className="text-gray-600">
-              {employees?.map((employee) => (
-                <tr key={employee.email} className="border-b hover:bg-gray-100">
-                  <td className="py-4 px-6">{employee.name}</td>
-                  <td className="py-4 px-6">{employee.designation}</td>
-                  <td className="py-4 px-6 text-center">
-                    {employee.role !== "hr" ? (
-                      <button
-                        onClick={() => handleMakeHR(employee?.email)}
-                        className="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-900"
-                      >
-                        Make HR
-                      </button>
-                    ) : (
-                      <div className=" uppercase">{employee.role}</div>
-                    )}
-                  </td>
-                  <td className="py-4 px-6 text-center">
-                    {employee.isFired ? (
-                      <span className="text-red-500 font-semibold">Fired</span>
-                    ) : (
-                      <Button
-                        onClick={() => {
-                          handleOpen();
-                          setFireEmail(employee?.email);
-                        }}
-                        //   variant="gradient"
-                        className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-                      >
-                        Fire
-                      </Button>
-                    )}
-                  </td>
-                  <td className="py-4 px-6 text-center">{employee?.salary}</td>
-                  <td className="py-4 px-6 text-center">
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() =>
-                          handleSalaryAdjustment(
-                            employee?.email,
-                            employee?.salary
-                          )
-                        }
-                        className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
-                      >
-                        Adjust Salary
-                      </button>
-                      <input
-                        className="w-36 text-white px-4 py-2 bg-green-500  rounded-md hover:bg-green-600 outline-none"
-                        onChange={(e) => setIncreasingSalary(e.target.value)}
-                        type="text"
-                        placeholder="Enter new salary"
-                      />
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="min-w-full table-auto bg-white shadow-md overflow-hidden">
+              <thead className="bg-gray-200 text-gray-700">
+                <tr>
+                  <th className="py-3 px-6 text-left">Name</th>
+                  <th className="py-3 px-6 text-left">Designation</th>
+                  <th className="py-3 px-6 text-center">Make HR</th>
+                  <th className="py-3 px-6 text-center">Fire</th>
+                  <th className="py-3 px-6 text-center">Salary</th>
+                  <th className="py-3 px-6 text-center">Salary Adjustment</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="text-gray-600">
+                {employees?.map((employee) => (
+                  <tr
+                    key={employee.email}
+                    className="border-b hover:bg-gray-100"
+                  >
+                    <td className="py-4 px-6">{employee.name}</td>
+                    <td className="py-4 px-6">{employee.designation}</td>
+                    <td className="py-4 px-6 text-center">
+                      {employee.role !== "hr" ? (
+                        <button
+                          onClick={() => handleMakeHR(employee?.email)}
+                          className="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-900"
+                        >
+                          Make HR
+                        </button>
+                      ) : (
+                        <div className=" uppercase">{employee.role}</div>
+                      )}
+                    </td>
+                    <td className="py-4 px-6 text-center">
+                      {employee.isFired ? (
+                        <span className="text-red-500 font-semibold">
+                          Fired
+                        </span>
+                      ) : (
+                        <Button
+                          onClick={() => {
+                            handleOpen();
+                            setFireEmail(employee?.email);
+                          }}
+                          //   variant="gradient"
+                          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                        >
+                          Fire
+                        </Button>
+                      )}
+                    </td>
+                    <td className="py-4 px-6 text-center">
+                      {employee?.salary}
+                    </td>
+                    <td className="py-4 px-6 text-center">
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() =>
+                            handleSalaryAdjustment(
+                              employee?.email,
+                              employee?.salary
+                            )
+                          }
+                          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                        >
+                          Adjust Salary
+                        </button>
+                        <input
+                          className="w-36 text-white px-4 py-2 bg-green-500  rounded-md hover:bg-green-600 outline-none"
+                          onChange={(e) => setIncreasingSalary(e.target.value)}
+                          type="text"
+                          placeholder="Enter new salary"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 p-4">
             {employees?.map((employee) => (

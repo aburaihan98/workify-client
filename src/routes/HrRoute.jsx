@@ -8,7 +8,7 @@ const HrRoute = ({ children }) => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (role === "hr") return children;
+  if (role === "hr" || role === "admin") return children;
 
   return <Navigate to="/dashboard/employee-list" replace="true" />;
 };

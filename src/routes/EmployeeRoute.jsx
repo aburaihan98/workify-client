@@ -8,7 +8,7 @@ const EmployeeRoute = ({ children }) => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (role === "employee") return children;
+  if (role === "employee" || role === "admin") return children;
 
   return <Navigate to="/dashboard/work-sheet" replace="true" />;
 };

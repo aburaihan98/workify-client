@@ -115,7 +115,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isNavOpen && (
-        <div className="lg:hidden bg-gray-50 shadow-md">
+        <div className="lg:hidden flex flex-col p-4 gap-3 bg-gray-50 shadow-md">
           <NavLink
             to="/contact"
             className={({ isActive }) =>

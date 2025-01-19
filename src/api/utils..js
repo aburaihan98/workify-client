@@ -18,15 +18,34 @@ export const uploadImageUrl = async (image) => {
 
 // save user in mongodb
 export const saveUsr = async (result) => {
+  const generateRandomBankAccount = () => {
+    return `ACC${Math.floor(Math.random() * 1000000000)}`;
+  };
+
+  const generateRandomSalary = () => {
+    return Math.floor(Math.random() * (100000 - 30000 + 1)) + 30000; // Generates a salary between 30,000 and 100,000
+  };
+
+  const generateRandomDesignation = () => {
+    const designations = [
+      "Sales Assistant",
+      "Social Media Executive",
+      "Digital Marketer",
+      "Support Specialist",
+      "HR Executive",
+    ];
+    return designations[Math.floor(Math.random() * designations.length)];
+  };
+
   const userInfo = {
     name: result?.user?.displayName,
     email: result?.user?.email,
     photo: result?.user?.photoURL,
     role: "employee",
+    bankAccountNo: generateRandomBankAccount(),
+    salary: generateRandomSalary(),
+    designation: generateRandomDesignation(),
   };
 
-  axiosPublic.post(
-    `${import.meta.env.VITE_API_URL}/users/${result?.user?.email}`,
-    userInfo
-  );
+  axiosPublic.post(`/users/${result?.user?.email}`, userInfo);
 };

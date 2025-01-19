@@ -39,7 +39,7 @@ function EmployeeList() {
 
   // toggle Verification
   const toggleVerification = async (id, isVerified) => {
-    const { data } = await axiosSecure.patch(`/employees/${id}`, {
+    const { data } = await axiosSecure.patch(`/employeesVerified/${id}`, {
       isVerified: !isVerified,
     });
     if (data?.modifiedCount > 0) {
@@ -100,7 +100,7 @@ function EmployeeList() {
     {
       header: "Details",
       cell: ({ row }) => (
-        <Link to={`/dashboard/employee-details/${row.original.email}`}>
+        <Link to={`/dashboard/details/${row.original.email}`}>
           <button className="px-4 py-2 rounded bg-blue-900 hover:bg-primary text-white">
             Details
           </button>
@@ -152,34 +152,35 @@ function EmployeeList() {
   return (
     <div className=" min-h-screen bg-gray-100">
       <h1 className="text-2xl font-bold text-center py-10">Employee Table</h1>
-      <table className="w-full bg-white shadow-md rounded-lg">
-        <thead className="bg-gray-200">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id} className="py-3 px-4">
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="border-b">
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="py-3 px-4 text-center">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
+      <div className=" overflow-x-auto">
+        <table className="w-full bg-white shadow-md rounded-lg">
+          <thead className="bg-gray-200">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} className="py-3 px-4">
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className="border-b">
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="py-3 px-4 text-center">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {/* Modal */}
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>Pay Employee</DialogHeader>
@@ -284,7 +285,13 @@ function EmployeeList() {
               handlePayRequest();
               handleOpen();
             }}
-            disabled={!selectedEmployee?.isVerified}
+            disabled={
+              !selectedEmployee?.isVerified ||
+              !month ||
+              !year ||
+              isNaN(year) ||
+              year.length !== 4
+            }
           >
             Pay
           </Button>

@@ -1,8 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { uploadImageUrl } from "../../api/utils.";
+import { saveUsr, uploadImageUrl } from "../../api/utils.";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "./../../hooks/useAuth";
 
@@ -10,6 +11,15 @@ const RegistrationPage = () => {
   const { createUser, loginWithGoogle, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+
+  // get all fired user
+  const { data: firedUser = [] } = useQuery({
+    queryKey: ["firedUsers"],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get("/firedUser");
+      return data;
+    },
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,15 +86,24 @@ const RegistrationPage = () => {
   };
 
   // google login
-  const handleGoogleLogin = () => {
-    const result = loginWithGoogle()
-      .then(async () => {
-        navigate(location.state ? location.state : "/");
-        toast.success(" Your login successful by Google");
-      })
-      .catch(() => {
-        toast.error("Enter your valid email");
-      });
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await loginWithGoogle();
+      // check fired user email
+      const isTrue = firedUser.some(
+        (user) => user?.email === result?.user?.email
+      );
+      if (isTrue) {
+        userLogout();
+        toast.error("This user has already been fired.");
+        return;
+      }
+      await saveUsr(result);
+      toast.success("Your login was successful with Google");
+      navigate(location.state ? location.state : "/");
+    } catch (error) {
+      toast.error("Error: " + error.message);
+    }
   };
 
   return (
@@ -168,7 +187,7 @@ const RegistrationPage = () => {
             Salary
           </label>
           <input
-            type="text"
+            type="number"
             id="salary"
             name="salary"
             className="w-full p-2 border border-gray-300 rounded-md"
@@ -177,17 +196,29 @@ const RegistrationPage = () => {
         </div>
 
         {/* Designation */}
+        {/* Designation */}
         <div>
           <label htmlFor="designation" className="block text-gray-700">
             Designation
           </label>
-          <input
-            type="text"
+          <select
             id="designation"
             name="designation"
             className="w-full p-2 border border-gray-300 rounded-md"
             required
-          />
+          >
+            <option value="" disabled selected>
+              Select a designation
+            </option>
+            <option value="Sales Assistant">Sales Assistant</option>
+            <option value="Social Media Executive">
+              Social Media Executive
+            </option>
+            <option value="Digital Marketer">Digital Marketer</option>
+            <option value="Support Specialist">Support Specialist</option>
+            <option value="HR Executive">HR Executive</option>
+            {/* Add more options as needed */}
+          </select>
         </div>
 
         {/* Photo Upload */}
@@ -200,6 +231,7 @@ const RegistrationPage = () => {
             id="photo"
             name="photo"
             className="w-full p-2 border border-gray-300 rounded-md"
+            required
           />
         </div>
 
