@@ -71,8 +71,8 @@ const CheckoutForm = () => {
         },
       });
 
-    console.log("confirm error", confirmError);
-    console.log("payment intent", paymentIntent);
+    // console.log("confirm error", confirmError);
+    // console.log("payment intent", paymentIntent);
 
     if (paymentIntent?.id) {
       // payroll
@@ -98,6 +98,7 @@ const CheckoutForm = () => {
         .post("/paymentHistory", paymentInfo)
         .then((result) => {
           if (result?.data?.insertedId) {
+            navigate("/dashboard/payroll");
             toast.success("Payment history saved successfully!");
           }
         })
