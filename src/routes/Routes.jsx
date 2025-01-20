@@ -3,7 +3,6 @@ import MainLayout from "../layouts/MainLayout";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Payroll from "../pages/Dashboard/Admin/Payroll";
 import VerifiedEmployees from "../pages/Dashboard/Admin/VerifiedEmployees";
-import VisitorOpinions from "../pages/Dashboard/Admin/VisitorOpinions";
 import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory";
 import WorkSheet from "../pages/Dashboard/Employee/WorkSheet";
 import EmployeeDetails from "../pages/Dashboard/Hr/EmployeeDetails";
@@ -69,16 +68,6 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <Payroll />
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "contact",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <VisitorOpinions />
             </AdminRoute>
           </PrivateRoute>
         ),

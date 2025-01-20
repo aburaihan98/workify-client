@@ -3,7 +3,7 @@ import React from "react";
 function Banner() {
   return (
     <div
-      className="relative w-full h-screen bg-cover bg-center"
+      className="relative w-full h-[550px] bg-cover bg-center"
       style={{
         backgroundImage:
           "url(https://media.istockphoto.com/id/2148737935/photo/doctor-coach-and-applause-with-team-in-meeting-for-collaboration-conference-or-health.jpg?s=1024x1024&w=is&k=20&c=Qe-c2BTBV7K63xgnwRXgVTQfdRuuehxrKHFVttdRBns=)",

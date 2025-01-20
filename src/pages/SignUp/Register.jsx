@@ -196,7 +196,6 @@ const RegistrationPage = () => {
         </div>
 
         {/* Designation */}
-        {/* Designation */}
         <div>
           <label htmlFor="designation" className="block text-gray-700">
             Designation
@@ -206,8 +205,9 @@ const RegistrationPage = () => {
             name="designation"
             className="w-full p-2 border border-gray-300 rounded-md"
             required
+            defaultValue=""
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Select a designation
             </option>
             <option value="Sales Assistant">Sales Assistant</option>
