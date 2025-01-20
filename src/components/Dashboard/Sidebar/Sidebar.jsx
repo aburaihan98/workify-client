@@ -83,11 +83,6 @@ const Sidebar = () => {
                 <Link to="/dashboard/progress">
                   <li className="px-8 py-2 hover:bg-gray-200">Progress</li>
                 </Link>
-                <Link to="/dashboard/contact">
-                  <li className="px-8 py-2 hover:bg-gray-200">
-                    Visitor Opinions
-                  </li>
-                </Link>
               </>
             )}
           </ul>

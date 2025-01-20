@@ -7,11 +7,11 @@ function Progress() {
   const [selectedEmployee, setSelectedEmployee] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
 
+  // employee Name
   const { data: employeeName = [] } = useQuery({
     queryKey: ["employeeName"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/employeeWorkSheet/name");
-      // Remove duplicate names using Set
       const uniqueNames = Array.from(
         new Map(data.map((item) => [item.name, item])).values()
       );
@@ -19,6 +19,7 @@ function Progress() {
     },
   });
 
+  // employee WorkSheet
   const { data: employeeWorkSheet = [] } = useQuery({
     queryKey: ["employeeWorkSheet", selectedEmployee, selectedMonth],
     queryFn: async () => {
@@ -92,9 +93,6 @@ function Progress() {
                 Employee Name
               </th>
               <th className="px-6 py-3 font-semibold text-gray-600 text-center">
-                Employee Email
-              </th>
-              <th className="px-6 py-3 font-semibold text-gray-600 text-center">
                 Work Sheet
               </th>
               <th className="px-6 py-3 font-semibold text-gray-600 text-center">
@@ -116,13 +114,12 @@ function Progress() {
               employeeWorkSheet.map((record) => (
                 <tr key={record._id} className="border-t">
                   <td className="px-6 py-4 text-center">{record.name}</td>
-                  <td className="px-6 py-4 text-center">{record.email}</td>
                   <td className="px-6 py-4 text-center">{record.tasks}</td>
                   <td className="px-6 py-4 text-center">
                     {record.hoursWorked}
                   </td>
                   <td className="px-6 py-4 text-center">
-                    {record.selectedDate}
+                    {new Date(record.selectedDate).toLocaleDateString()}
                   </td>
                 </tr>
               ))
