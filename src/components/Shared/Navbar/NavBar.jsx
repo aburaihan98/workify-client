@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../../../../public/logo.png";
+import Logo from "../../../assets/logo.png";
 import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
