@@ -180,6 +180,39 @@ function EmployeeList() {
             ))}
           </tbody>
         </table>
+        <div className="p-4 flex justify-between items-center">
+          {/* Previous Button */}
+          <button
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+            className={`px-4 py-2 rounded ${
+              table.getCanPreviousPage()
+                ? "bg-primary text-white hover:bg-blue-900"
+                : "bg-gray-300 text-gray-600 cursor-not-allowed"
+            }`}
+          >
+            Previous
+          </button>
+
+          {/* Page Info */}
+          <span className="text-sm">
+            Page {table.getState().pagination.pageIndex + 1} of{" "}
+            {table.getPageCount()}
+          </span>
+
+          {/* Next Button */}
+          <button
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+            className={`px-4 py-2 rounded ${
+              table.getCanNextPage()
+                ? "bg-primary text-white hover:bg-blue-900"
+                : "bg-gray-300 text-gray-600 cursor-not-allowed"
+            }`}
+          >
+            Next
+          </button>
+        </div>
       </div>
       {/* Modal */}
       <Dialog open={open} handler={handleOpen}>
