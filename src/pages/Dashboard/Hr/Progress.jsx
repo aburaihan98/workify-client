@@ -90,6 +90,9 @@ function Progress() {
           <thead className="bg-gray-100">
             <tr>
               <th className="px-6 py-3 font-semibold text-gray-600 text-center">
+                ID
+              </th>
+              <th className="px-6 py-3 font-semibold text-gray-600 text-center">
                 Employee Name
               </th>
               <th className="px-6 py-3 font-semibold text-gray-600 text-center">
@@ -111,8 +114,9 @@ function Progress() {
                 </td>
               </tr>
             ) : (
-              employeeWorkSheet.map((record) => (
+              employeeWorkSheet.map((record, index) => (
                 <tr key={record._id} className="border-t">
+                  <td className="px-6 py-4 text-center">{index + 1}</td>
                   <td className="px-6 py-4 text-center">{record.name}</td>
                   <td className="px-6 py-4 text-center">{record.tasks}</td>
                   <td className="px-6 py-4 text-center">

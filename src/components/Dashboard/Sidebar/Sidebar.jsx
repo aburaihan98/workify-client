@@ -1,5 +1,13 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import {
+  FaChartLine,
+  FaClipboard,
+  FaHome,
+  FaListAlt,
+  FaMoneyBill,
+  FaUserAlt,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useRole from "../../../hooks/useRole";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
@@ -38,11 +46,13 @@ const Sidebar = () => {
             {role === "employee" && (
               <>
                 <Link to="/dashboard/work-sheet">
-                  <li className="px-8 py-2 hover:bg-gray-200">Work Sheet</li>
+                  <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                    <FaClipboard className="mr-2" /> Work Sheet
+                  </li>
                 </Link>
                 <Link to="/dashboard/payment-history">
-                  <li className="px-8 py-2 hover:bg-gray-200">
-                    Payment History
+                  <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                    <FaMoneyBill className="mr-2" /> Payment History
                   </li>
                 </Link>
               </>
@@ -51,10 +61,14 @@ const Sidebar = () => {
             {role === "hr" && (
               <>
                 <Link to="/dashboard/employee-list">
-                  <li className="px-8 py-2 hover:bg-gray-200">Employee List</li>
+                  <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                    <FaUserAlt className="mr-2" /> Employee List
+                  </li>
                 </Link>
                 <Link to="/dashboard/progress">
-                  <li className="px-8 py-2 hover:bg-gray-200">Progress</li>
+                  <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                    <FaChartLine className="mr-2" /> Progress
+                  </li>
                 </Link>
               </>
             )}
@@ -62,15 +76,23 @@ const Sidebar = () => {
             {role === "admin" && (
               <>
                 <Link to="/dashboard/all-employee-list">
-                  <li className="px-8 py-2 hover:bg-gray-200">
-                    All Employee List
+                  <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                    <FaListAlt className="mr-2" /> All Employee List
                   </li>
                 </Link>
                 <Link to="/dashboard/payroll">
-                  <li className="px-8 py-2 hover:bg-gray-200">Payroll</li>
+                  <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                    <FaMoneyBill className="mr-2" /> Payroll
+                  </li>
                 </Link>
               </>
             )}
+            <hr className="my-2 border-gray-300" />
+            <Link to="/">
+              <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                <FaHome className="mr-2" /> Home
+              </li>
+            </Link>
           </ul>
         </nav>
       </aside>

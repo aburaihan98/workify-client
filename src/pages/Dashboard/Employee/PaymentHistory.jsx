@@ -73,6 +73,9 @@ function PaymentHistory() {
           <thead className="bg-gray-100">
             <tr>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
+                ID
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
                 Month
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
@@ -100,8 +103,11 @@ function PaymentHistory() {
                 </td>
               </tr>
             ) : (
-              paymentHistory.map((payment) => (
+              paymentHistory.map((payment, index) => (
                 <tr key={payment._id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
+                    {index + 1}
+                  </td>
                   <td className="px-6 py-4 text-sm text-gray-800 border-b">
                     {payment.month}
                   </td>

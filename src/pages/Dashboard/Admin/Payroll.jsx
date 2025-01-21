@@ -24,6 +24,7 @@ function Payroll() {
         <table className="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
+              <th className="py-3 px-6 text-left">ID</th>
               <th className="py-3 px-6 text-left">Name</th>
               <th className="py-3 px-6 text-left">Salary</th>
               <th className="py-3 px-6 text-left">Month</th>
@@ -33,8 +34,9 @@ function Payroll() {
             </tr>
           </thead>
           <tbody className="text-gray-600">
-            {payrollEmployees.map((employee) => (
+            {payrollEmployees.map((employee, index) => (
               <tr key={employee._id} className="border-b hover:bg-gray-100">
+                <td className="py-4 px-6">{index + 1}</td>
                 <td className="py-4 px-6">{employee.name}</td>
                 <td className="py-4 px-6">{employee.salary}</td>
                 <td className="py-4 px-6">{employee.month}</td>

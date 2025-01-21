@@ -121,6 +121,7 @@ function VerifiedEmployees() {
             <table className="min-w-full table-auto bg-white shadow-md overflow-hidden">
               <thead className="bg-gray-200 text-gray-700">
                 <tr>
+                  <th className="py-3 px-6 text-left">ID</th>
                   <th className="py-3 px-6 text-left">Name</th>
                   <th className="py-3 px-6 text-left">Designation</th>
                   <th className="py-3 px-6 text-center">Make HR</th>
@@ -130,11 +131,12 @@ function VerifiedEmployees() {
                 </tr>
               </thead>
               <tbody className="text-gray-600">
-                {employees?.map((employee) => (
+                {employees?.map((employee, index) => (
                   <tr
                     key={employee.email}
                     className="border-b hover:bg-gray-100"
                   >
+                    <td className="py-4 px-6">{index + 1}</td>
                     <td className="py-4 px-6">{employee.name}</td>
                     <td className="py-4 px-6">{employee.designation}</td>
                     <td className="py-4 px-6 text-center">
