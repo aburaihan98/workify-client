@@ -6,6 +6,7 @@ import {
   FaHome,
   FaListAlt,
   FaMoneyBill,
+  FaUser,
   FaUserAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -91,6 +92,11 @@ const Sidebar = () => {
             <Link to="/">
               <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
                 <FaHome className="mr-2" /> Home
+              </li>
+            </Link>
+            <Link to="/dashboard">
+              <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                <FaUser className="mr-2" /> Profile
               </li>
             </Link>
           </ul>

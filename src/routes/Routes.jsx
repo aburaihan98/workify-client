@@ -14,6 +14,7 @@ import RegistrationPage from "../pages/SignUp/Register";
 import DashboardLayout from "./../layouts/DashboardLayout";
 import Login from "./../pages/Login/Login";
 import Payment from "./../pages/Payment/Payment";
+import Profile from "./../pages/Profile/Profile";
 import AdminRoute from "./AdminRoute";
 import EmployeeRoute from "./EmployeeRoute";
 import HrRoute from "./HrRoute";
@@ -51,87 +52,75 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        element: <Profile />,
+      },
       // admin routes
       {
         path: "all-employee-list",
         element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <VerifiedEmployees />
-            </AdminRoute>
-          </PrivateRoute>
+          <AdminRoute>
+            <VerifiedEmployees />
+          </AdminRoute>
         ),
       },
       {
         path: "payroll",
         element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <Payroll />
-            </AdminRoute>
-          </PrivateRoute>
+          <AdminRoute>
+            <Payroll />
+          </AdminRoute>
         ),
       },
       {
         path: "payment/:id",
         element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <Payment />
-            </AdminRoute>
-          </PrivateRoute>
+          <AdminRoute>
+            <Payment />
+          </AdminRoute>
         ),
       },
       //  HR routes
       {
         path: "employee-list",
         element: (
-          <PrivateRoute>
-            <HrRoute>
-              <EmployeeList />
-            </HrRoute>
-          </PrivateRoute>
+          <HrRoute>
+            <EmployeeList />
+          </HrRoute>
         ),
       },
       {
         path: "details/:email",
         element: (
-          <PrivateRoute>
-            <HrRoute>
-              <EmployeeDetails />
-            </HrRoute>
-          </PrivateRoute>
+          <HrRoute>
+            <EmployeeDetails />
+          </HrRoute>
         ),
       },
       {
         path: "progress",
         element: (
-          <PrivateRoute>
-            <HrRoute>
-              <Progress />
-            </HrRoute>
-          </PrivateRoute>
+          <HrRoute>
+            <Progress />
+          </HrRoute>
         ),
       },
       //employee
       {
         path: "work-sheet",
         element: (
-          <PrivateRoute>
-            <EmployeeRoute>
-              <WorkSheet />
-            </EmployeeRoute>
-          </PrivateRoute>
+          <EmployeeRoute>
+            <WorkSheet />
+          </EmployeeRoute>
         ),
       },
       {
         path: "payment-history",
         element: (
-          <PrivateRoute>
-            <EmployeeRoute>
-              <PaymentHistory />
-            </EmployeeRoute>
-          </PrivateRoute>
+          <EmployeeRoute>
+            <PaymentHistory />
+          </EmployeeRoute>
         ),
       },
     ],

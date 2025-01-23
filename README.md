@@ -6,7 +6,7 @@ https://abu-raihan-37e40.web.app
 
 ### Admin User’s Email and Password
 
-Email: aburaihan020498@gmail.com
+Email: aburaihanrahmani@gmail.com
 Password: aA1122#
 
 ### 10 bullet points feature my website
