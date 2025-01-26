@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 function Progress() {
@@ -8,7 +9,7 @@ function Progress() {
   const [selectedMonth, setSelectedMonth] = useState("");
 
   // employee Name
-  const { data: employeeName = [] } = useQuery({
+  const { data: employeeName = [], isLoading } = useQuery({
     queryKey: ["employeeName"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/employeeWorkSheet/name");
@@ -29,6 +30,8 @@ function Progress() {
       return data;
     },
   });
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="p-8 min-h-screen mx-auto bg-white shadow-lg ">

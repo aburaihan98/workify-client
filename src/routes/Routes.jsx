@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import ContactUsMessage from "../pages/Dashboard/Admin/ContactUsMessage";
 import Payroll from "../pages/Dashboard/Admin/Payroll";
 import VerifiedEmployees from "../pages/Dashboard/Admin/VerifiedEmployees";
 import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory";
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       // admin routes
+      {
+        path: "contactUs-message",
+        element: (
+          <AdminRoute>
+            <ContactUsMessage />
+          </AdminRoute>
+        ),
+      },
       {
         path: "all-employee-list",
         element: (

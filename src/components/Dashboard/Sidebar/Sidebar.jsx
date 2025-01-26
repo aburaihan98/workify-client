@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   FaChartLine,
   FaClipboard,
+  FaEnvelope,
   FaHome,
   FaListAlt,
   FaMoneyBill,
@@ -84,6 +85,11 @@ const Sidebar = () => {
                 <Link to="/dashboard/payroll">
                   <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
                     <FaMoneyBill className="mr-2" /> Payroll
+                  </li>
+                </Link>
+                <Link to="/dashboard/contactUs-message">
+                  <li className="px-8 py-2 hover:bg-gray-200 flex items-center">
+                    <FaEnvelope className="mr-2" /> Contact Us Message
                   </li>
                 </Link>
               </>

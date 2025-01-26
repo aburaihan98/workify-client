@@ -8,7 +8,8 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "./../../hooks/useAuth";
 
 const RegistrationPage = () => {
-  const { createUser, loginWithGoogle, updateUserProfile } = useAuth();
+  const { createUser, loginWithGoogle, updateUserProfile, userLogout } =
+    useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
@@ -72,6 +73,8 @@ const RegistrationPage = () => {
             .then(() => {
               navigate(location.state ? location.state : "/");
               toast.success("Signup Successful");
+              userLogout();
+              navigate("/login");
             })
             .catch((error) => {
               toast.error("Error saving user info: " + error.message);

@@ -17,6 +17,7 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 function EmployeeList() {
@@ -29,7 +30,11 @@ function EmployeeList() {
   const handleOpen = () => setOpen(!open);
 
   // all employees data
-  const { data: employees = [], refetch } = useQuery({
+  const {
+    data: employees = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/employees");
@@ -148,6 +153,8 @@ function EmployeeList() {
         toast.error(errorMessage);
       });
   };
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className=" min-h-screen bg-gray-100">

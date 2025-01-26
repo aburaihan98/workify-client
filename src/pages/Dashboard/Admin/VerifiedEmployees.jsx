@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "./../../../components/Shared/LoadingSpinner";
 
 function VerifiedEmployees() {
   const axiosSecure = useAxiosSecure();
@@ -18,7 +19,11 @@ function VerifiedEmployees() {
   const [viewMode, setViewMode] = useState("table");
 
   //   get verified employees
-  const { data: employees = [], refetch } = useQuery({
+  const {
+    data: employees = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["verified-employees"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/verified-employees");
@@ -90,6 +95,8 @@ function VerifiedEmployees() {
   };
 
   const handleOpen = () => setOpen(!open);
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <>

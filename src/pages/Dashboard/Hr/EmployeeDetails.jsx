@@ -49,8 +49,6 @@ function EmployeeDetails() {
     salary: item.salary,
   }));
 
-  console.log(employeesDetails);
-
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <div className="flex justify-center items-center m-4">

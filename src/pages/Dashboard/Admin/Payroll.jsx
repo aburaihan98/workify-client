@@ -1,18 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 function Payroll() {
   const axiosSecure = useAxiosSecure();
 
   // payrollEmployees
-  const { data: payrollEmployees = [], refetch } = useQuery({
+  const {
+    data: payrollEmployees = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["payrollEmployees"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/payroll");
       return data;
     },
   });
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className=" min-h-screen m-auto bg-gray-100 shadow-md">

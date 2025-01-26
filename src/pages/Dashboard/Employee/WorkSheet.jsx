@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "./../../../components/Shared/LoadingSpinner";
 
 const WorkSheet = () => {
   const { user } = useAuth();
@@ -25,7 +26,11 @@ const WorkSheet = () => {
   const [taskId, setTaskId] = useState("");
 
   //   get all tasks
-  const { data: employeeWorkSheet = [], refetch } = useQuery({
+  const {
+    data: employeeWorkSheet = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["employeeWorkSheet"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -134,6 +139,8 @@ const WorkSheet = () => {
 
   // Handle the modal open/close
   const handleOpen = () => setOpen(!open);
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="min-h-screen">
