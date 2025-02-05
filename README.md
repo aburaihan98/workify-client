@@ -52,10 +52,13 @@ This Employee Management website allows HR to manage employees' workflows, monit
 ### 1. Clone this repository -
 git clone https://github.com/aburaihan98/mern-workify-client.git
 
-### 2. Just run this command to install node dependencies
+### 2. Go to the cloned project directory
+cd mern-workify-client
+
+### 3. Just run this command to install node dependencies
 npm install
 
-### 2. Just run this command
+### 4. Just run this command
 npm run dev
 
 
