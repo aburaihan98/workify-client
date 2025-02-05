@@ -49,24 +49,14 @@ This Employee Management website allows HR to manage employees' workflows, monit
 
 ## Steps to Run Locally
 
-### 1. Clone the Repository
-```bash
+### 1. Clone this repository -
 git clone https://github.com/aburaihan98/mern-workify-client.git
 
-MONGO_URI=your_mongodb_uri
-FIREBASE_ADMIN_SDK=your_firebase_admin_sdk_key
-JWT_SECRET=your_jwt_secret
-
+### 2. Just run this command to install node dependencies
 npm install
 
+### 2. Just run this command
 npm run dev
 
-### Explanation:
-
-1. **Steps to Setup Backend and Frontend**: I've added the exact instructions for setting up both backend and frontend sections with `npm install` for dependencies and a `.env` file for sensitive data.
-2. **Environment Variables**: It clearly instructs what to add to the `.env` file (MongoDB URI, Firebase Admin SDK credentials, and JWT secret).
-3. **Development Server**: Instructions to start both the backend and frontend server are clear, ensuring they can easily run the application locally.
-
-Make sure to replace placeholder values like `your-username`, `your_mongodb_uri`, `your_firebase_admin_sdk_key`, and `your_jwt_secret` with actual information for your project.
 
 
