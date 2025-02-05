@@ -47,6 +47,13 @@ This Employee Management website allows HR to manage employees' workflows, monit
   - dotenv
   - firebase-admin
 
+## **How to Run the Project Locally**
+
+### Prerequisites
+- Node.js
+- MongoDB instance
+- Firebase credentials (for authentication)
+
 ## Steps to Run Locally
 
 ### 1. Clone this repository -
@@ -60,6 +67,9 @@ npm install
 
 ### 4. Just run this command
 npm run dev
+
+## live project links:
+
 
 
 
