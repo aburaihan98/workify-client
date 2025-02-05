@@ -1,32 +1,54 @@
-# Workify
+# Employee Management Website
 
-### Live site URL
+## Project Overview
+This Employee Management website allows HR to manage employees' workflows, monitor payment history, and approve payments. Employees can record their work, view payment history, and interact with HR. The website is secure, easy to use, and designed to streamline employee management tasks in any organization.
 
-https://abu-raihan-37e40.web.app
+### Screenshot
+![Employee Management Screenshot](./path/to/screenshot.png)
 
-### Admin User’s Email and Password
+## Technologies Used
+- **Frontend:**
+  - React JS
+  - Tailwind CSS
+  - TanStack Table (for table management)
+  - React Query (for data fetching)
+  - Firebase (for authentication)
 
-Email: aburaihanrahmani@gmail.com
-Password: aA1122#
+- **Backend:**
+  - Node.js
+  - Express.js
+  - MongoDB
+  - JWT (for authentication and authorization)
 
-### 10 bullet points feature my website
+## Core Features
+- **Email & Password Authentication**: Secure login and registration system for employees and HR users.
+- **Role-based Access Control**: Different roles (Employee, HR, Admin) with specific permissions.
+- **Work Recording**: Employees can record their work hours and tasks.
+- **Payment History**: Employees can view their salary history and payment details.
+- **Employee Management**: HR can manage employee information and approve payments.
+- **Salary Management**: Admin can modify salaries and approve payment requests.
+- **Responsive Design**: Fully responsive layout that works across devices (desktop, tablet, and mobile).
 
-User Authentication - Implemented email/password authentication for Employee, HR, and Admin roles.
+## Dependencies
+- **Frontend:**
+  - react
+  - react-dom
+  - react-router-dom
+  - react-query
+  - tailwindcss
+  - tanstack-table
+  - react-datepicker
 
-Role-Based Access - Role-specific routes and operations, ensuring employees, HRs, and Admins have appropriate access.
+- **Backend:**
+  - express
+  - mongoose
+  - jsonwebtoken
+  - cors
+  - dotenv
+  - firebase-admin
 
-Work Flow Management - Employees can submit their work hours and tasks, which HR can manage.
+## Steps to Run Locally
 
-Payment History - HR can pay employees and track payment history, ensuring no double payments for the same month/year.
-
-Employee Management - HR can view, verify, and manage employee details, including making employees HR or firing them.
-
-Admin Controls - Admin can manage employee roles, adjust salaries, and oversee payroll operations.
-
-Data Filtering - HR can filter employee work records based on employee name and month.
-
-Responsive Design - Fully responsive design ensuring proper viewing across all devices (mobile, tablet, and desktop).
-
-Toast Notifications - Integrated sweet alert/toast notifications for CRUD operations, login, and registration feedback.
-
-Payment Gateway Integration - Admins can make payments via a secure payment gateway, preventing duplicate payments.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/employee-management.git
