@@ -4,7 +4,7 @@
 This Employee Management website allows HR to manage employees' workflows, monitor payment history, and approve payments. Employees can record their work, view payment history, and interact with HR. The website is secure, easy to use, and designed to streamline employee management tasks in any organization.
 
 ### Screenshot
-![Employee Management Screenshot](./path/to/screenshot.png)
+![EquiSports Screenshot](https://i.postimg.cc/3Nj9DnfZ/Screenshot-55.png)
 
 ## Technologies Used
 - **Frontend:**
