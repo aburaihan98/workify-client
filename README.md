@@ -69,7 +69,7 @@ npm install
 npm run dev
 
 ## live project links:
-https://final-assignment-9b289.web.app/
+https://workify-ada5e.web.app/
 
 
 
