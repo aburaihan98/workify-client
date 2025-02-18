@@ -3,17 +3,17 @@ const MeetOurTeam = () => {
     {
       name: "John Doe",
       position: "HR Manager",
-      img: "https://via.placeholder.com/150",
+      img: "https://cdn.pixabay.com/photo/2017/08/25/03/14/politics-2679002_640.jpg",
     },
     {
       name: "Jane Smith",
       position: "Senior Developer",
-      img: "https://via.placeholder.com/150",
+      img: "https://cdn.pixabay.com/photo/2018/05/15/22/30/smith-3404450_640.jpg",
     },
     {
       name: "Michael Brown",
       position: "Project Manager",
-      img: "https://via.placeholder.com/150",
+      img: "https://cdn.pixabay.com/photo/2017/10/10/16/33/shaman-2837843_640.jpg",
     },
   ];
 
