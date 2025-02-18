@@ -32,18 +32,18 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-12 bg-gray-100">
-      <div className="w-11/12 mx-auto text-center">
+    <section className="py-6 md:py-12 ">
+      <div className="text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-8">
           What Our Clients Say
         </h2>
         <Carousel className="">
           {testimonials.map((item) => (
-            <div key={item.id} className="relative h-[500px]">
+            <div key={item.id} className="relative">
               <img
                 src={item.image}
                 alt={item.name}
-                className="h-full w-full  rounded-xl"
+                className="h-[500px] w-full rounded-xl object-cover"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-4">
                 <h3 className="text-2xl font-bold mb-2">{item.name}</h3>

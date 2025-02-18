@@ -94,8 +94,8 @@ function EmployeeList() {
           disabled={!row.original.isVerified}
           className={`px-4 py-2 rounded ${
             row.original.isVerified
-              ? "bg-primary hover:bg-blue-900"
-              : "bg-gray-400 cursor-not-allowed"
+              ? "bg-button hover:bg-hoverColor text-white"
+              : "bg-gray-400 cursor-not-allowed text-white"
           }`}
         >
           Pay
@@ -106,7 +106,7 @@ function EmployeeList() {
       header: "Details",
       cell: ({ row }) => (
         <Link to={`/dashboard/details/${row.original.email}`}>
-          <button className="px-4 py-2 rounded bg-blue-900 hover:bg-primary text-white">
+          <button className="px-4 py-2 rounded bg-button hover:bg-hoverColor text-white">
             Details
           </button>
         </Link>

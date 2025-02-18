@@ -18,7 +18,7 @@ const EmployeeBenefits = () => {
   ];
 
   return (
-    <section className="w-11/12 mx-auto text-center bg-gray-100 py-10 rounded-lg">
+    <section className="w-11/12 mx-auto text-center py-10 rounded-lg">
       <h2 className="text-3xl font-bold mb-6">Employee Benefits & Perks</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {benefits.map((perk, index) => (

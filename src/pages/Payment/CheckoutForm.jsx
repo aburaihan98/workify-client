@@ -146,7 +146,7 @@ const CheckoutForm = () => {
           onClick={() => handlePayment(id)}
           type="submit"
           disabled={!stripe || isProcessing}
-          className={`w-full py-2 bg-blue-500 text-white font-semibold rounded-lg focus:outline-none ${
+          className={`w-full py-2 bg-button hover:bg-hoverColor text-white font-semibold rounded-lg focus:outline-none ${
             isProcessing || !stripe ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >

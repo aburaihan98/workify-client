@@ -1,6 +1,6 @@
 function OurAchievements() {
   return (
-    <div className="bg-gray-100 py-12">
+    <div className="py-6 md:py-12">
       <div className="w-11/12 mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8 text-gray-800">
           Our Achievements

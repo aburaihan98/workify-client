@@ -184,7 +184,7 @@ const WorkSheet = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-primary hover:bg-blue-900 text-white px-4 py-2 rounded w-full md:w-auto"
+            className="bg-button hover:bg-hoverColor text-white px-4 py-2 rounded w-full md:w-auto"
           >
             Add
           </button>

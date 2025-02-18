@@ -142,7 +142,7 @@ function PaymentHistory() {
             className={`px-4 py-2 rounded-md text-sm font-medium ${
               currentPage === 0
                 ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-blue-500 text-white hover:bg-blue-600"
+                : "bg-button text-white hover:bg-hoverColor"
             }`}
           >
             Prev
@@ -155,7 +155,7 @@ function PaymentHistory() {
               onClick={() => setCurrentPage(page)}
               className={`px-3 py-1 rounded-md text-sm font-medium ${
                 currentPage === page
-                  ? "bg-blue-500 text-white"
+                  ? "bg-button text-white"
                   : "bg-gray-200 text-gray-600 hover:bg-gray-300"
               }`}
             >
@@ -170,7 +170,7 @@ function PaymentHistory() {
             className={`px-4 py-2 rounded-md text-sm font-medium ${
               currentPage === pages.length - 1
                 ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-blue-500 text-white hover:bg-blue-600"
+                : "bg-button text-white hover:bg-hoverColor"
             }`}
           >
             Next
@@ -189,7 +189,7 @@ function PaymentHistory() {
             id="itemsPerPage"
             value={itemsParPage}
             onChange={handleItemParPage}
-            className="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="5">5</option>
             <option value="10">10</option>

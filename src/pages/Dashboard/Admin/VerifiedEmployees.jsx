@@ -113,7 +113,7 @@ function VerifiedEmployees() {
                   prevMode === "table" ? "grid" : "table"
                 )
               }
-              className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+              className="px-6 py-2 bg-button text-white rounded-md hover:bg-hoverColor"
             >
               {viewMode === "table"
                 ? "Switch to Grid View"
@@ -150,7 +150,7 @@ function VerifiedEmployees() {
                       {employee.role !== "hr" ? (
                         <button
                           onClick={() => handleMakeHR(employee?.email)}
-                          className="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-900"
+                          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-900"
                         >
                           Make HR
                         </button>
@@ -160,7 +160,7 @@ function VerifiedEmployees() {
                     </td>
                     <td className="py-4 px-6 text-center">
                       {employee.isFired ? (
-                        <span className="text-red-500 font-semibold">
+                        <span className="text-red-500 font-semibold hover:bg-red-900">
                           Fired
                         </span>
                       ) : (
@@ -170,7 +170,7 @@ function VerifiedEmployees() {
                             setFireEmail(employee?.email);
                           }}
                           //   variant="gradient"
-                          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-900"
                         >
                           Fire
                         </Button>
@@ -188,12 +188,12 @@ function VerifiedEmployees() {
                               employee?.salary
                             )
                           }
-                          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-900"
                         >
                           Adjust Salary
                         </button>
                         <input
-                          className="w-36 text-white px-4 py-2 bg-green-500  rounded-md hover:bg-green-600 outline-none"
+                          className="w-36 text-white px-4 py-2 bg-green-500  rounded-md hover:bg-green-900 outline-none"
                           onChange={(e) => setIncreasingSalary(e.target.value)}
                           type="text"
                           placeholder="Enter new salary"

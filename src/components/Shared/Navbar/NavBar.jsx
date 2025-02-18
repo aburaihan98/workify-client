@@ -93,7 +93,7 @@ const Navbar = () => {
               <MenuList className="bg-white rounded-md shadow-lg">
                 <MenuItem
                   onClick={handleLogout}
-                  className="text-blue-600 hover:bg-red-50"
+                  className="text-primary text-center hover:bg-red-50"
                 >
                   Logout
                 </MenuItem>
