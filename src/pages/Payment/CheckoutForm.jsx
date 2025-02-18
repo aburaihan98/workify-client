@@ -93,6 +93,7 @@ const CheckoutForm = () => {
         year,
         salary,
         transactionId: paymentIntent?.id,
+        date: new Date().toISOString(),
       };
       axiosSecure
         .post("/paymentHistory", paymentInfo)

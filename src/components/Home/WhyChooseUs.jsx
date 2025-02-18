@@ -1,6 +1,6 @@
 function WhyChooseUs() {
   return (
-    <div className="bg-blue-50 py-12">
+    <div className="py-12">
       <div className=" w-11/12 mx-auto">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
           Why Choose Us

@@ -9,7 +9,6 @@ import {
 } from "firebase/auth";
 
 import { createContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import auth from "../firebase/firebase";
 import useAxiosPublic from "./../hooks/useAxiosPublic";
 
@@ -59,22 +58,12 @@ export default function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        try {
-          const { data: userFromDB } = await axiosPublic.get(
-            `/users/${currentUser?.email}`
-          );
+        const userInfo = {
+          email: currentUser?.email,
+        };
 
-          const userInfo = {
-            email: currentUser?.email,
-            role: userFromDB?.role || "employee",
-          };
-
-          const { data } = await axiosPublic.post("/jwt", userInfo);
-
-          localStorage.setItem("access-token", data?.token);
-        } catch (error) {
-          toast.error("Error fetching role or token:", error);
-        }
+        const { data } = await axiosPublic.post("/jwt", userInfo);
+        localStorage.setItem("access-token", data?.token);
       } else {
         localStorage.removeItem("access-token");
       }

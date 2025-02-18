@@ -73,8 +73,6 @@ const RegistrationPage = () => {
             .then(() => {
               navigate(location.state ? location.state : "/");
               toast.success("Signup Successful");
-              userLogout();
-              navigate("/login");
             })
             .catch((error) => {
               toast.error("Error saving user info: " + error.message);
@@ -110,161 +108,197 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6">
-      <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name */}
-        <div>
-          <label htmlFor="name" className="block text-gray-700">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="block text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
+    <div className="w-11/12 md:w-8/12 mx-auto py-6">
+      <h2 className="text-2xl font-bold text-primary mb-4 text-center">
+        Register
+      </h2>
+      <div className="card bg-base-100 shadow-2xl rounded-lg p-8">
+        <form onSubmit={handleSubmit} className="">
+          <div className="flex flex-col md:flex-row gap-4 lg:gap-8">
+            <div className="w-full space-y-4">
+              {/* Name */}
 
-        {/* Password */}
-        <div>
-          <label htmlFor="password" className="block text-gray-700">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-gray-700 font-semibold"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
 
-        {/* Role */}
-        <div>
-          <label htmlFor="role" className="block text-gray-700">
-            Role
-          </label>
-          <select
-            id="role"
-            name="role"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          >
-            <option value="employee">Employee</option>
-            <option value="hr">HR</option>
-          </select>
-        </div>
+              {/* Email */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-gray-700 font-semibold"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
 
-        {/* Bank Account */}
-        <div>
-          <label htmlFor="bankAccountNo" className="block text-gray-700">
-            Bank Account No
-          </label>
-          <input
-            type="text"
-            id="bankAccountNo"
-            name="bankAccountNo"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
+              {/* Password */}
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-gray-700 font-semibold"
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
 
-        {/* Salary */}
-        <div>
-          <label htmlFor="salary" className="block text-gray-700">
-            Salary
-          </label>
-          <input
-            type="number"
-            id="salary"
-            name="salary"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
+              {/* Role */}
+              <div>
+                <label
+                  htmlFor="role"
+                  className="block text-gray-700 font-semibold"
+                >
+                  Role
+                </label>
+                <select
+                  id="role"
+                  name="role"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                >
+                  <option value="employee">Employee</option>
+                  <option value="hr">HR</option>
+                </select>
+              </div>
+            </div>
 
-        {/* Designation */}
-        <div>
-          <label htmlFor="designation" className="block text-gray-700">
-            Designation
-          </label>
-          <select
-            id="designation"
-            name="designation"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select a designation
-            </option>
-            <option value="Sales Assistant">Sales Assistant</option>
-            <option value="Social Media Executive">
-              Social Media Executive
-            </option>
-            <option value="Digital Marketer">Digital Marketer</option>
-            <option value="Support Specialist">Support Specialist</option>
-            <option value="HR Executive">HR Executive</option>
-            {/* Add more options as needed */}
-          </select>
-        </div>
+            <div className="w-full space-y-4">
+              {/* Bank Account */}
+              <div>
+                <label
+                  htmlFor="bankAccountNo"
+                  className="block text-gray-700 font-semibold"
+                >
+                  Bank Account No
+                </label>
+                <input
+                  type="text"
+                  id="bankAccountNo"
+                  name="bankAccountNo"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
 
-        {/* Photo Upload */}
-        <div>
-          <label htmlFor="photo" className="block text-gray-700">
-            Upload Photo
-          </label>
-          <input
-            type="file"
-            id="photo"
-            name="photo"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
+              {/* Salary */}
+              <div>
+                <label
+                  htmlFor="salary"
+                  className="block text-gray-700 font-semibold"
+                >
+                  Salary
+                </label>
+                <input
+                  type="number"
+                  id="salary"
+                  name="salary"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
 
-        {/* Submit Button */}
-        <div className="text-center">
-          <button
-            type="submit"
-            className="bg-primary font-semibold hover:bg-blue-900 text-white w-full py-3 rounded-md"
-          >
-            Register
-          </button>
-        </div>
-      </form>
-      <button
-        onClick={handleGoogleLogin}
-        className="btn bg-primary text-white w-full py-3  mt-4 border border-primaryColor rounded-md flex items-center justify-center gap-2 text-primaryColor font-semibold text-xl mb-2 hover:bg-blue-900 "
-      >
-        <FaGoogle />
-        Login with Google
-      </button>
-      <p className="px-6 font-semibold text-sm text-center text-gray-600 mt-6">
-        Already have an account?{" "}
-        <Link
-          to="/login"
-          className="hover:underline hover:text-blue-900 text-primary"
+              {/* Designation */}
+              <div>
+                <label
+                  htmlFor="designation"
+                  className="block text-gray-700 font-semibold"
+                >
+                  Designation
+                </label>
+                <select
+                  id="designation"
+                  name="designation"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                  defaultValue=""
+                >
+                  <option value="" disabled>
+                    Select a designation
+                  </option>
+                  <option value="Sales Assistant">Sales Assistant</option>
+                  <option value="Social Media Executive">
+                    Social Media Executive
+                  </option>
+                  <option value="Digital Marketer">Digital Marketer</option>
+                  <option value="Support Specialist">Support Specialist</option>
+                  <option value="HR Executive">HR Executive</option>
+                  {/* Add more options as needed */}
+                </select>
+              </div>
+
+              {/* Photo Upload */}
+              <div>
+                <label
+                  htmlFor="photo"
+                  className="block text-gray-700 font-semibold"
+                >
+                  Upload Photo
+                </label>
+                <input
+                  type="file"
+                  id="photo"
+                  name="photo"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          {/* Submit Button */}
+          <div className="text-center mt-4">
+            <button
+              type="submit"
+              className="btn bg-primary font-semibold hover:text-primary text-white w-full py-3 rounded-md"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+        <div className="divider">OR</div>
+        <button
+          onClick={handleGoogleLogin}
+          className="btn bg-primary text-white w-full py-3 border border-primaryColor rounded-md flex items-center justify-center gap-2 text-primaryColor font-semibold text-xl mb-2 hover:text-primary"
         >
-          Login
-        </Link>
-        .
-      </p>
+          <FaGoogle />
+          Login with Google
+        </button>
+        <p className="px-6 font-semibold text-sm text-center text-gray-600 mt-6">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="hover:underline text-primary font-semibold"
+          >
+            Login
+          </Link>
+          .
+        </p>
+      </div>
     </div>
   );
 };

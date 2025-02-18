@@ -1,4 +1,7 @@
 import React from "react";
+import EmployeeBenefits from "../../components/Home/EmployeeBenefits";
+import MeetOurTeam from "../../components/Home/MeetOurTeam";
+import WorkplaceInsights from "../../components/Home/WorkplaceInsights";
 import Banner from "./../../components/Home/Banner";
 import OurAchievements from "./../../components/Home/OurAchievements";
 import Services from "./../../components/Home/Services";
@@ -13,6 +16,9 @@ function Home() {
       <Testimonials />
       <OurAchievements />
       <WhyChooseUs />
+      <MeetOurTeam />
+      <EmployeeBenefits />
+      <WorkplaceInsights />
     </div>
   );
 }

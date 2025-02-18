@@ -68,17 +68,15 @@ export default function Login() {
   };
 
   return (
-    <div className=" px-4 flex justify-center items-center min-h-screen">
+    <div className="px-4 flex justify-center items-center min-h-screen">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-primary mb-4">Login now!</h1>
+          <h1 className="text-2xl font-bold text-primary mb-4">Login now!</h1>
         </div>
         <div className="card bg-base-100 shadow-2xl rounded-lg p-8">
-          <form onSubmit={handleLoginSubmit} className="space-y-2">
+          <form onSubmit={handleLoginSubmit} className=" space-y-4">
             <div className="form-control">
-              <label className="label mb-2 text-lg font-semibold text-gray-700">
-                Email
-              </label>
+              <label className="label font-semibold text-gray-700">Email</label>
               <input
                 type="email"
                 placeholder="Email"
@@ -89,7 +87,7 @@ export default function Login() {
             </div>
 
             <div className="form-control">
-              <label className="label mb-2 text-lg font-semibold text-gray-700">
+              <label className="label font-semibold text-gray-700">
                 Password
               </label>
               <input
@@ -101,15 +99,16 @@ export default function Login() {
               />
             </div>
 
-            <div className="form-control mt-6">
-              <button className="btn bg-primary w-full py-3 rounded-lg text-white font-semibold hover:bg-blue-900">
+            <div className="form-control">
+              <button className="btn bg-button w-full py-3 rounded-lg text-white font-semibold hover:text-primary">
                 Login
               </button>
             </div>
           </form>
+          <div className="divider">OR</div>
           <button
             onClick={handleGoogleLogin}
-            className="btn bg-primary text-white w-full py-3  mt-4 border border-primaryColor rounded-md flex items-center justify-center gap-2 text-primaryColor font-semibold text-xl mb-2 hover:bg-blue-900 "
+            className="btn bg-button text-white w-full py-3 border border-primaryColor rounded-md flex items-center justify-center gap-2 text-primaryColor font-semibold text-xl mb-2 hover:text-primary"
           >
             <FaGoogle />
             Login with Google
@@ -117,7 +116,10 @@ export default function Login() {
           <div className="text-center mt-6">
             <p className="text-sm text-gray-600">
               Don't have an account?{" "}
-              <Link to="/register" className="text-primary font-semibold">
+              <Link
+                to="/register"
+                className="hover:underline text-primary font-semibold"
+              >
                 Register here
               </Link>
             </p>

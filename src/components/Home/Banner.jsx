@@ -19,9 +19,6 @@ function Banner() {
             Empowering businesses and delivering unparalleled solutions to our
             valued clients worldwide.
           </p>
-          <button className="px-6 py-3 bg-primary hover:bg-blue-900 rounded-lg text-lg font-semibold transition duration-300">
-            Learn More
-          </button>
         </div>
       </div>
     </div>

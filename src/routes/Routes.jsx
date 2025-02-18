@@ -4,18 +4,19 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import ContactUsMessage from "../pages/Dashboard/Admin/ContactUsMessage";
 import Payroll from "../pages/Dashboard/Admin/Payroll";
 import VerifiedEmployees from "../pages/Dashboard/Admin/VerifiedEmployees";
+import DashboardOverview from "../pages/Dashboard/DashboardOverview/DashboardOverview";
 import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory";
 import WorkSheet from "../pages/Dashboard/Employee/WorkSheet";
 import EmployeeDetails from "../pages/Dashboard/Hr/EmployeeDetails";
 import EmployeeList from "../pages/Dashboard/Hr/EmployeeList";
 import Progress from "../pages/Dashboard/Hr/Progress";
+import Profile from "../pages/Dashboard/Profile/Profile";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home/Home";
 import RegistrationPage from "../pages/SignUp/Register";
 import DashboardLayout from "./../layouts/DashboardLayout";
 import Login from "./../pages/Login/Login";
 import Payment from "./../pages/Payment/Payment";
-import Profile from "./../pages/Profile/Profile";
 import AdminRoute from "./AdminRoute";
 import EmployeeRoute from "./EmployeeRoute";
 import HrRoute from "./HrRoute";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "/dashboard/dashboard-overview",
+        element: <DashboardOverview />,
+      },
       {
         index: true,
         element: <Profile />,

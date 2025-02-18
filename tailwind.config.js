@@ -13,9 +13,12 @@ module.exports = withMT({
       colors: {
         // primary: "#4CAF50",
         // "primary-dark": "#388E3C",
-        primary: "#3157d4",
+        primary: "#2c354d",
+        secondary: "#b3d5e3",
+        button: "#334854",
+        hoverColor: "#896399",
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 });
