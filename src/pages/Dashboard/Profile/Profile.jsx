@@ -46,32 +46,28 @@ const Profile = () => {
         </div>
 
         {/* Info Section */}
-        <div className="md:ml-8 md:mt-0 text-left">
-          <h2 className="text-2xl font-bold text-gray-900 text-center md:text-left">
+        <div className="md:ml-8 md:mt-0 text-left p-4">
+          <h2 className="text-2xl font-bold  text-center md:text-left">
             {name}
           </h2>
-          <p className="text-gray-500 text-lg text-center md:text-left">
-            ({role})
-          </p>
+          <p className=" text-lg text-center md:text-left">({role})</p>
 
           <div className="mt-5 space-y-3">
-            <p className="text-gray-700">
-              <strong className="text-gray-900">Email:</strong> {email}
+            <p className="">
+              <strong className="">Email:</strong> {email}
             </p>
-            <p className="text-gray-700">
-              <strong className="text-gray-900">Designation:</strong>{" "}
-              {designation}
+            <p className="">
+              <strong className="">Designation:</strong> {designation}
             </p>
-            <p className="text-gray-700">
-              <strong className="text-gray-900">Salary:</strong>
+            <p className="">
+              <strong className="">Salary:</strong>
               <span className="text-green-600 font-medium"> ${salary}</span>
             </p>
-            <p className="text-gray-700">
-              <strong className="text-gray-900">Bank Account:</strong>{" "}
-              {bankAccountNo}
+            <p className="">
+              <strong className="">Bank Account:</strong> {bankAccountNo}
             </p>
-            <p className="text-gray-700">
-              <strong className="text-gray-900">Verified:</strong>{" "}
+            <p className="">
+              <strong className="">Verified:</strong>{" "}
               <span
                 className={
                   isVerified
@@ -82,8 +78,8 @@ const Profile = () => {
                 {isVerified ? "Yes" : "No"}
               </span>
             </p>
-            <p className="text-gray-700">
-              <strong className="text-gray-900">Status:</strong>{" "}
+            <p className="">
+              <strong className="">Status:</strong>{" "}
               <span
                 className={
                   isFired

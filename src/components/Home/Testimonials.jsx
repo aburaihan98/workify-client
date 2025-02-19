@@ -34,7 +34,7 @@ const Testimonials = () => {
   return (
     <section className="py-6 md:py-12 ">
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-8">
+        <h2 className="text-3xl font-bold mb-4 md:mb-8">
           What Our Clients Say
         </h2>
         <Carousel className="">

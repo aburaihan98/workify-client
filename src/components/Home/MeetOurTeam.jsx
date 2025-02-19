@@ -18,8 +18,8 @@ const MeetOurTeam = () => {
   ];
 
   return (
-    <section className="w-11/12 mx-auto text-center py-10">
-      <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
+    <section className="w-11/12 mx-auto text-center py-6 md:py-12">
+      <h2 className="text-3xl font-bold mb-4 md:mb-8">Meet Our Team</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {employees.map((emp, index) => (
           <div

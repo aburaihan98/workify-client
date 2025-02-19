@@ -54,7 +54,7 @@ const Sidebar = () => {
         </div>
         <nav className="pt-4 min-h-screen">
           <ul>
-            <Link to="/dashboard/dashboard-overview">
+            <Link to="/dashboard">
               <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
                 <RxDashboard className="mr-2" />
                 Dashboard
@@ -115,7 +115,7 @@ const Sidebar = () => {
                 <FaHome className="mr-2" /> Home
               </li>
             </Link>
-            <Link to="/dashboard">
+            <Link to="/dashboard/profile">
               <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
                 <FaUser className="mr-2" /> Profile
               </li>

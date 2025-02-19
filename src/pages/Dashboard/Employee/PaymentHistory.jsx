@@ -62,7 +62,7 @@ function PaymentHistory() {
   };
 
   return (
-    <div className="p-6 min-h-screen mx-auto bg-white shadow-lg rounded-lg">
+    <div className="p-6 min-h-screen mx-auto shadow-lg rounded-lg">
       <h1 className="text-4xl font-semibold text-gray-800 mb-8 py-2 text-center">
         Payment History
       </h1>
@@ -178,7 +178,7 @@ function PaymentHistory() {
         </div>
 
         {/* Items Per Page Selector */}
-        <div className="mt-4">
+        <div className="mt-4 text-primary">
           <label
             htmlFor="itemsPerPage"
             className="text-gray-600 text-sm font-medium mr-2"

@@ -71,7 +71,7 @@ const DashboardOverview = () => {
       </div>
 
       {/* Salary Chart */}
-      <div className="bg-white p-4 rounded-lg shadow-md">
+      <div className="p-4 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">Salary History</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={paymentHistory}>
@@ -84,10 +84,10 @@ const DashboardOverview = () => {
       </div>
 
       {/* Recent Payments Table */}
-      <div className="bg-white p-4 rounded-lg shadow-md overflow-x-auto">
+      <div className="p-4 rounded-lg shadow-md overflow-x-auto">
         <h2 className="text-xl font-semibold mb-4">Recent Payments</h2>
         <table className="w-full border-collapse border border-gray-200 text-center">
-          <thead className="bg-gray-100">
+          <thead className="">
             <tr>
               <th className="p-2 border border-gray-200">Employee</th>
               <th className="p-2 border border-gray-200">Month</th>

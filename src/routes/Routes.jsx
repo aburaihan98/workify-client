@@ -55,11 +55,11 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard/dashboard-overview",
+        index: true,
         element: <DashboardOverview />,
       },
       {
-        index: true,
+        path: "/dashboard/profile",
         element: <Profile />,
       },
       // admin routes

@@ -157,11 +157,11 @@ function EmployeeList() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className=" min-h-screen bg-gray-100">
-      <h1 className="text-2xl font-bold text-center py-10">Employee Table</h1>
+    <div className="min-h-screen">
+      <h1 className="text-3xl font-bold text-center py-10">Employee Table</h1>
       <div className=" overflow-x-auto">
-        <table className="w-full bg-white shadow-md rounded-lg">
-          <thead className="bg-gray-200">
+        <table className="w-full shadow-md rounded-lg">
+          <thead className="bg-gray-200 text-primary">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (

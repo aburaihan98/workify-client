@@ -1,8 +1,8 @@
 function WhyChooseUs() {
   return (
-    <div className="py-12">
+    <div className="py-6 md:py-12">
       <div className=" w-11/12 mx-auto">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        <h2 className="text-3xl font-bold text-center mb-4 md:mb-8">
           Why Choose Us
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -145,10 +145,10 @@ const WorkSheet = () => {
   return (
     <div className="min-h-screen">
       {/* Form Section */}
-      <div className="py-8 px-4">
+      <div className="py-4 md:py-8 px-4">
         <form
           onSubmit={handleAddSubmit}
-          className=" flex flex-col md:flex-row md:justify-center md:space-x-4 space-y-4 md:space-y-0 mb-1.5"
+          className="text-primary flex flex-col md:flex-row md:justify-center md:space-x-4 space-y-4 md:space-y-0 mb-1.5"
         >
           {/* Task Dropdown */}
           <select
@@ -214,14 +214,14 @@ const WorkSheet = () => {
                 </td>
                 <td className="border p-4 flex justify-center gap-3 space-x-2">
                   <Button
-                    className="bg-primary hover:bg-blue-900"
+                    className="bg-blue-gray-500 hover:bg-blue-gray-900"
                     onClick={() => handleEdit(task._id)}
                     // variant="gradient"
                   >
                     <FaEdit />
                   </Button>
                   <Button
-                    className="bg-red-500"
+                    className="bg-red-500 hover:bg-red-900"
                     onClick={() => handleDelete(task._id)}
                   >
                     <FaTrashAlt />

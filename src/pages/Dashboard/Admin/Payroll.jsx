@@ -22,13 +22,13 @@ function Payroll() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className=" min-h-screen m-auto bg-gray-100 shadow-md">
+    <div className="min-h-screen m-auto shadow-md">
       <h1 className="text-3xl font-semibold text-center py-9 my-0.5">
         Employee Payment Requests
       </h1>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full table-auto bg-white shadow-md overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
               <th className="py-3 px-6 text-left">ID</th>

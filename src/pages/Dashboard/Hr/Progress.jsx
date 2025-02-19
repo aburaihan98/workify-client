@@ -34,8 +34,8 @@ function Progress() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="p-8 min-h-screen mx-auto bg-white shadow-lg ">
-      <h1 className="text-4xl font-semibold mb-8 text-center text-gray-800">
+    <div className="p-8 min-h-screen mx-auto shadow-lg ">
+      <h1 className="text-4xl font-semibold mb-8 text-center">
         Employee Work Progress
       </h1>
 
@@ -43,11 +43,9 @@ function Progress() {
       <div className="flex flex-wrap gap-6 mb-8 justify-center">
         {/* Employee Dropdown */}
         <div className="w-full sm:w-1/3">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Employee
-          </label>
+          <label className="block text-sm font-medium mb-2">Employee</label>
           <select
-            className="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="text-primary w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             value={selectedEmployee}
             onChange={(e) => setSelectedEmployee(e.target.value)}
           >
@@ -62,11 +60,9 @@ function Progress() {
 
         {/* Month Dropdown */}
         <div className="w-full sm:w-1/3">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Month
-          </label>
+          <label className="block text-sm font-medium mb-2">Month</label>
           <select
-            className="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full text-primary px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
           >
@@ -89,30 +85,26 @@ function Progress() {
 
       {/* Table to show work records */}
       <div className="overflow-x-auto rounded-lg shadow-lg">
-        <table className="min-w-full table-auto text-sm text-gray-700">
-          <thead className="bg-gray-100">
+        <table className="min-w-full table-auto text-sm">
+          <thead className="">
             <tr>
-              <th className="px-6 py-3 font-semibold text-gray-600 text-center">
-                ID
-              </th>
-              <th className="px-6 py-3 font-semibold text-gray-600 text-center">
+              <th className="px-6 py-3 font-semibold text-center">ID</th>
+              <th className="px-6 py-3 font-semibold text-center">
                 Employee Name
               </th>
-              <th className="px-6 py-3 font-semibold text-gray-600 text-center">
+              <th className="px-6 py-3 font-semibold text-center">
                 Work Sheet
               </th>
-              <th className="px-6 py-3 font-semibold text-gray-600 text-center">
+              <th className="px-6 py-3 font-semibold text-center">
                 Hours Worked
               </th>
-              <th className="px-6 py-3 font-semibold text-gray-600 text-center">
-                Date
-              </th>
+              <th className="px-6 py-3 font-semibold text-center">Date</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="">
             {employeeWorkSheet.length === 0 ? (
               <tr>
-                <td colSpan="4" className="text-center py-4 text-gray-500">
+                <td colSpan="4" className="text-center py-4">
                   No records found
                 </td>
               </tr>
