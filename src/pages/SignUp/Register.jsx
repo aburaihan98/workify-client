@@ -151,18 +151,18 @@ const RegistrationPage = () => {
                 />
               </div>
 
-              {/* Password */}
+              {/* Salary */}
               <div>
                 <label
-                  htmlFor="password"
+                  htmlFor="salary"
                   className="block text-gray-700 font-semibold"
                 >
-                  Password
+                  Salary
                 </label>
                 <input
-                  type="password"
-                  id="password"
-                  name="password"
+                  type="number"
+                  id="salary"
+                  name="salary"
                   className="w-full p-2 border border-gray-300 rounded-md"
                   required
                 />
@@ -205,19 +205,18 @@ const RegistrationPage = () => {
                   required
                 />
               </div>
-
-              {/* Salary */}
+              {/* Password */}
               <div>
                 <label
-                  htmlFor="salary"
+                  htmlFor="password"
                   className="block text-gray-700 font-semibold"
                 >
-                  Salary
+                  Password
                 </label>
                 <input
-                  type="number"
-                  id="salary"
-                  name="salary"
+                  type="password"
+                  id="password"
+                  name="password"
                   className="w-full p-2 border border-gray-300 rounded-md"
                   required
                 />
