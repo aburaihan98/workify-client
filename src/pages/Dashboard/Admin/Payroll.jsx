@@ -22,13 +22,13 @@ function Payroll() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen m-auto shadow-md">
-      <h1 className="text-3xl font-semibold text-center py-9 my-0.5">
+    <div className="py-6 md:py-12">
+      <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
         Employee Payment Requests
       </h1>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white shadow-md overflow-hidden">
+        <table className="min-w-full table-auto overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
               <th className="py-3 px-6 text-left">ID</th>
@@ -40,9 +40,12 @@ function Payroll() {
               <th className="py-3 px-6 text-center">Action</th>
             </tr>
           </thead>
-          <tbody className="text-gray-600">
+          <tbody className="">
             {payrollEmployees.map((employee, index) => (
-              <tr key={employee._id} className="border-b hover:bg-gray-100">
+              <tr
+                key={employee._id}
+                className="border-b hover:bg-gray-100 hover:text-primary"
+              >
                 <td className="py-4 px-6">{index + 1}</td>
                 <td className="py-4 px-6">{employee.name}</td>
                 <td className="py-4 px-6">{employee.salary}</td>

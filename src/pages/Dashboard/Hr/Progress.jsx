@@ -34,13 +34,13 @@ function Progress() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="p-8 min-h-screen mx-auto shadow-lg ">
-      <h1 className="text-4xl font-semibold mb-8 text-center">
+    <div className="py-6 md:py-12">
+      <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
         Employee Work Progress
       </h1>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-6 mb-8 justify-center">
+      <div className="px-4 md:px-8 flex flex-wrap gap-4 md:gap-4 mb-8 justify-center">
         {/* Employee Dropdown */}
         <div className="w-full sm:w-1/3">
           <label className="block text-sm font-medium mb-2">Employee</label>
@@ -84,21 +84,15 @@ function Progress() {
       </div>
 
       {/* Table to show work records */}
-      <div className="overflow-x-auto rounded-lg shadow-lg">
-        <table className="min-w-full table-auto text-sm">
-          <thead className="">
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto shadow-md overflow-hidden">
+          <thead className="bg-gray-200 text-gray-700">
             <tr>
-              <th className="px-6 py-3 font-semibold text-center">ID</th>
-              <th className="px-6 py-3 font-semibold text-center">
-                Employee Name
-              </th>
-              <th className="px-6 py-3 font-semibold text-center">
-                Work Sheet
-              </th>
-              <th className="px-6 py-3 font-semibold text-center">
-                Hours Worked
-              </th>
-              <th className="px-6 py-3 font-semibold text-center">Date</th>
+              <th className="px-6 py-3 text-center">ID</th>
+              <th className="px-6 py-3 text-center">Employee Name</th>
+              <th className="px-6 py-3 text-center">Work Sheet</th>
+              <th className="px-6 py-3 text-center">Hours Worked</th>
+              <th className="px-6 py-3 text-center">Date</th>
             </tr>
           </thead>
           <tbody className="">
@@ -110,7 +104,10 @@ function Progress() {
               </tr>
             ) : (
               employeeWorkSheet.map((record, index) => (
-                <tr key={record._id} className="border-t">
+                <tr
+                  key={record._id}
+                  className="border-b hover:bg-gray-100 hover:text-primary"
+                >
                   <td className="px-6 py-4 text-center">{index + 1}</td>
                   <td className="px-6 py-4 text-center">{record.name}</td>
                   <td className="px-6 py-4 text-center">{record.tasks}</td>

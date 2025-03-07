@@ -30,7 +30,9 @@ const Navbar = () => {
           <img src={Logo} alt="Company Logo" className="h-12 w-12 rounded" />
         </NavLink>
         <div className="flex items-center gap-6">
-          <ThemeToggle />
+          <div className="hidden lg:block">
+            <ThemeToggle />
+          </div>
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
             <NavLink
@@ -103,87 +105,92 @@ const Navbar = () => {
           </div>
         </div>
         {/* Mobile Menu Button */}
-        <Menu>
-          <MenuHandler>
-            <button className="lg:hidden p-2 rounded focus:outline-none">
-              <Bars3Icon className="h-8 w-8 text-white" />
-            </button>
-          </MenuHandler>
-          <MenuList className="lg:hidden flex flex-col p-4 gap-3 bg-[#334854] shadow-md">
-            {/* Dashboard link only visible when user is logged in */}
-            {user && (
-              <>
-                <NavLink
-                  to="/contact"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "px-4 py-2 text-white border-b-2 border-[#896399] font-bold"
-                      : "px-4 py-2 text-white font-bold"
-                  }
-                >
-                  Contact Us
-                </NavLink>
-                <NavLink
-                  to="/dashboard"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-white border-b-2 border-[#896399] font-bold"
-                      : "text-white font-bold"
-                  }
-                >
-                  Dashboard
-                </NavLink>
-              </>
-            )}
-
-            {/* Conditional User Actions */}
-            {!user ? (
-              <>
-                <NavLink
-                  to="/contact"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "px-4 py-2 text-white border-b-2 border-[#896399] font-bold"
-                      : "px-4 py-2 text-white font-bold"
-                  }
-                >
-                  Contact Us
-                </NavLink>
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-white border-b-2 border-[#896399] font-bold"
-                      : "text-white font-bold"
-                  }
-                >
-                  <button className="block w-full text-left px-4 py-2">
-                    Login
-                  </button>
-                </NavLink>
-                <NavLink
-                  to="/register"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-white border-b-2 border-[#896399] font-bold"
-                      : "text-white font-bold"
-                  }
-                >
-                  <button className="block w-full text-left px-4 py-2">
-                    Register
-                  </button>
-                </NavLink>
-              </>
-            ) : (
-              <button
-                onClick={handleLogout}
-                className="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-50"
-              >
-                Logout
+        <div className="lg:hidden flex items-center">
+          <div className="lg:hidden">
+            <ThemeToggle />
+          </div>
+          <Menu>
+            <MenuHandler>
+              <button className="flex items-center lg:hidden p-2 rounded focus:outline-none">
+                <Bars3Icon className="h-8 w-8 text-white" />
               </button>
-            )}
-          </MenuList>
-        </Menu>
+            </MenuHandler>
+            <MenuList className="lg:hidden flex flex-col p-4 gap-3 bg-[#334854] shadow-md">
+              {/* Dashboard link only visible when user is logged in */}
+              {user && (
+                <>
+                  <NavLink
+                    to="/contact"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "px-4 py-2 text-white border-b-2 border-[#896399] font-bold"
+                        : "px-4 py-2 text-white font-bold"
+                    }
+                  >
+                    Contact Us
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "px-4 py-2 text-white border-b-2 border-[#896399] font-bold"
+                        : "px-4 py-2 text-white font-bold"
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </>
+              )}
+
+              {/* Conditional User Actions */}
+              {!user ? (
+                <>
+                  <NavLink
+                    to="/contact"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "px-4 py-2 text-white border-b-2 border-[#896399] font-bold"
+                        : "px-4 py-2 text-white font-bold"
+                    }
+                  >
+                    Contact Us
+                  </NavLink>
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-white border-b-2 border-[#896399] font-bold"
+                        : "text-white font-bold"
+                    }
+                  >
+                    <button className="block w-full text-left px-4 py-2">
+                      Login
+                    </button>
+                  </NavLink>
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-white border-b-2 border-[#896399] font-bold"
+                        : "text-white font-bold"
+                    }
+                  >
+                    <button className="block w-full text-left px-4 py-2">
+                      Register
+                    </button>
+                  </NavLink>
+                </>
+              ) : (
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-white font-bold"
+                >
+                  Logout
+                </button>
+              )}
+            </MenuList>
+          </Menu>
+        </div>
       </div>
     </nav>
   );

@@ -14,32 +14,29 @@ import { RxDashboard } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
-import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [role, isLoading] = useRole();
   const { user } = useAuth();
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <div>
+    <div className="z-[1000] bg-[#334854] text-gray-100 h-full">
       {/* Hamburger Icon */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden p-3 fixed top-3 md:top-2.5 left-4 z-50 bg-gray-100 rounded-md shadow-md"
+        className="lg:hidden p-3 fixed top-3 md:top-2.5 left-4 z-50  rounded-md shadow-md"
       >
         {isOpen ? (
-          <XMarkIcon className="h-7 w-7 " />
+          <XMarkIcon className="h-7 w-7 text-white" />
         ) : (
-          <Bars3Icon className="h-7 w-7 md:pt-2 md:w-10 " />
+          <Bars3Icon className="h-7 w-7 md:pt-2 md:w-10 text-white" />
         )}
       </button>
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 min-h-screen bg-[#334854] text-gray-100 shadow-lg transform ${
+        className={` z-[1000] mt-[72px] md:mt-0 fixed top-0 left-0 bg-[#334854] text-gray-100  shadow-lg transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 lg:translate-x-0 lg:static lg:w-full`}
       >

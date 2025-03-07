@@ -29,7 +29,9 @@ const EmployeeBenefits = () => {
             className="bg-white p-6 shadow-lg rounded-lg text-center"
           >
             <div className="text-5xl">{perk.icon}</div>
-            <h3 className="text-xl font-semibold mt-4">{perk.title}</h3>
+            <h3 className="text-xl font-semibold mt-4 text-gray-700">
+              {perk.title}
+            </h3>
             <p className="text-gray-500 mt-2">{perk.description}</p>
           </div>
         ))}

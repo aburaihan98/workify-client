@@ -157,11 +157,13 @@ function EmployeeList() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen">
-      <h1 className="text-3xl font-bold text-center py-10">Employee Table</h1>
-      <div className=" overflow-x-auto">
-        <table className="w-full shadow-md rounded-lg">
-          <thead className="bg-gray-200 text-primary">
+    <div className="py-6 md:py-12">
+      <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
+        Employee Table
+      </h1>
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto overflow-hidden">
+          <thead className="bg-gray-200 text-gray-700">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -177,9 +179,12 @@ function EmployeeList() {
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="border-b">
+              <tr
+                key={row.id}
+                className="border-b hover:bg-gray-100 hover:text-primary"
+              >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="py-3 px-4 text-center">
+                  <td key={cell.id} className="py-3 px-6 text-center">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

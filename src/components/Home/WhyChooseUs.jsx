@@ -7,28 +7,36 @@ function WhyChooseUs() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-2xl font-semibold mb-4">Expert Team</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+              Expert Team
+            </h3>
             <p className="text-gray-600">
               Our team consists of highly skilled professionals with years of
               experience in their respective fields.
             </p>
           </div>
           <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-2xl font-semibold mb-4">Customer Focus</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+              Customer Focus
+            </h3>
             <p className="text-gray-600">
               We prioritize our clients' needs and ensure they receive the best
               solutions tailored to their goals.
             </p>
           </div>
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-2xl font-semibold mb-4">Innovation</h3>
+          <div className="p-6 bg-white rounded-lg shadow-md ">
+            <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+              Innovation
+            </h3>
             <p className="text-gray-600">
               Staying ahead with cutting-edge technology and innovative
               approaches to solve complex problems.
             </p>
           </div>
           <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-2xl font-semibold mb-4">24/7 Support</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+              24/7 Support
+            </h3>
             <p className="text-gray-600">
               Our support team is always ready to assist you with any issues,
               anytime, anywhere.

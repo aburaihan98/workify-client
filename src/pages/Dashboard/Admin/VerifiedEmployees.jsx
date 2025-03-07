@@ -100,9 +100,9 @@ function VerifiedEmployees() {
 
   return (
     <>
-      <div className="min-h-screen m-auto">
+      <div className="py-6 md:py-12">
         <div className="flex justify-around items-center">
-          <h1 className="text-3xl font-semibold text-center py-9 my-0.5">
+          <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
             All Verified Employees
           </h1>
           {/* Toggle Button */}
@@ -141,7 +141,7 @@ function VerifiedEmployees() {
                 {employees?.map((employee, index) => (
                   <tr
                     key={employee.email}
-                    className="border-b hover:bg-gray-100"
+                    className="border-b hover:bg-gray-100 hover:text-primary"
                   >
                     <td className="py-4 px-6">{index + 1}</td>
                     <td className="py-4 px-6">{employee.name}</td>
@@ -210,18 +210,16 @@ function VerifiedEmployees() {
             {employees?.map((employee) => (
               <div
                 key={employee.email}
-                className="bg-white shadow-md rounded-md p-6 flex flex-col gap-4"
+                className="shadow-md rounded-md p-6 flex flex-col gap-4"
               >
                 <h2 className="text-xl font-semibold">{employee.name}</h2>
-                <p className="text-gray-700">
-                  Designation: {employee.designation}
-                </p>
-                <p className="text-gray-700">Salary: {employee.salary}</p>
+                <p className="">Designation: {employee.designation}</p>
+                <p className="">Salary: {employee.salary}</p>
 
                 <div className="flex flex-col gap-2">
                   <button
                     onClick={() => handleMakeHR(employee?.email)}
-                    className="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-900"
+                    className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-900"
                   >
                     {employee.role !== "hr" ? "Make HR" : "HR"}
                   </button>
@@ -230,7 +228,7 @@ function VerifiedEmployees() {
                       handleOpen();
                       setFireEmail(employee?.email);
                     }}
-                    className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                    className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-900"
                   >
                     Fire
                   </button>
@@ -248,7 +246,7 @@ function VerifiedEmployees() {
                     onClick={() =>
                       handleSalaryAdjustment(employee?.email, employee?.salary)
                     }
-                    className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                    className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-900"
                   >
                     Adjust Salary
                   </button>

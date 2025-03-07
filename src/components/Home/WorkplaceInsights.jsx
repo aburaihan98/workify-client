@@ -17,7 +17,9 @@ const WorkplaceInsights = () => {
             className="bg-white p-6 shadow-lg rounded-lg text-center"
           >
             <div className="text-5xl">{stat.icon}</div>
-            <h3 className="text-2xl font-semibold mt-4">{stat.count}</h3>
+            <h3 className="text-2xl font-semibold mt-4 text-gray-700">
+              {stat.count}
+            </h3>
             <p className="text-gray-500 mt-2">{stat.title}</p>
           </div>
         ))}

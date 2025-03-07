@@ -143,9 +143,9 @@ const WorkSheet = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen">
+    <div className="py-6 md:py-12">
       {/* Form Section */}
-      <div className="py-4 md:py-8 px-4">
+      <div className="p-6 md:p-12">
         <form
           onSubmit={handleAddSubmit}
           className="text-primary flex flex-col md:flex-row md:justify-center md:space-x-4 space-y-4 md:space-y-0 mb-1.5"
@@ -192,27 +192,30 @@ const WorkSheet = () => {
       </div>
 
       {/* Table Section */}
-      <div className=" overflow-x-auto">
-        <table className="min-w-full table-auto border-collapse">
-          <thead>
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto overflow-hidden">
+          <thead className="bg-gray-200 text-gray-700">
             <tr>
-              <th className="border p-4">ID</th>
-              <th className="border p-4">Task</th>
-              <th className="border p-4">Hours Worked</th>
-              <th className="border p-4">Date</th>
-              <th className="border p-4">Actions</th>
+              <th className="py-3 px-4">ID</th>
+              <th className="py-3 px-4">Task</th>
+              <th className="py-3 px-4">Hours Worked</th>
+              <th className="py-3 px-4">Date</th>
+              <th className="py-3 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>
             {employeeWorkSheet?.map((task, index) => (
-              <tr key={task._id}>
-                <td className="border p-4 text-center">{index + 1}</td>
-                <td className="border p-4 text-center">{task.tasks}</td>
-                <td className="border p-4 text-center">{task.hoursWorked}</td>
-                <td className="border p-4 text-center">
+              <tr
+                key={task._id}
+                className="border-b hover:bg-gray-100 hover:text-primary"
+              >
+                <td className="py-3 px-6 text-center">{index + 1}</td>
+                <td className="py-3 px-6 text-center">{task.tasks}</td>
+                <td className="py-3 px-6 text-center">{task.hoursWorked}</td>
+                <td className="py-3 px-6 text-center">
                   {new Date(task.selectedDate).toISOString().split("T")[0]}
                 </td>
-                <td className="border p-4 flex justify-center gap-3 space-x-2">
+                <td className="py-3 px-6 flex justify-center gap-3 space-x-2">
                   <Button
                     className="bg-blue-gray-500 hover:bg-blue-gray-900"
                     onClick={() => handleEdit(task._id)}

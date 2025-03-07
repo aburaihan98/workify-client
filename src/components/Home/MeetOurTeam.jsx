@@ -31,7 +31,7 @@ const MeetOurTeam = () => {
               alt={emp.name}
               className="w-24 h-24 mx-auto rounded-full mb-4"
             />
-            <h3 className="text-xl font-semibold">{emp.name}</h3>
+            <h3 className="text-xl font-semibold text-gray-700">{emp.name}</h3>
             <p className="text-gray-500">{emp.position}</p>
           </div>
         ))}

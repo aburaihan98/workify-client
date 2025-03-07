@@ -62,31 +62,21 @@ function PaymentHistory() {
   };
 
   return (
-    <div className="p-6 min-h-screen mx-auto shadow-lg rounded-lg">
-      <h1 className="text-4xl font-semibold text-gray-800 mb-8 py-2 text-center">
+    <div className="py-6 md:py-12">
+      <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
         Payment History
       </h1>
 
       {/* Payment History Table */}
-      <div className="overflow-x-auto rounded-lg shadow-md bg-white">
-        <table className="min-w-full table-auto border-collapse border border-gray-200">
-          <thead className="bg-gray-100">
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto overflow-hidden">
+          <thead className="bg-gray-200 text-gray-700">
             <tr>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
-                ID
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
-                Month
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
-                Year
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
-                Amount
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 border-b">
-                Transaction ID
-              </th>
+              <th className="py-3 px-6 text-left">ID</th>
+              <th className="py-3 px-6 text-left">Month</th>
+              <th className="py-3 px-6 text-left">Year</th>
+              <th className="py-3 px-6 text-left">Amount</th>
+              <th className="py-3 px-6 text-left">Transaction ID</th>
             </tr>
           </thead>
           <tbody>
@@ -104,22 +94,15 @@ function PaymentHistory() {
               </tr>
             ) : (
               paymentHistory.map((payment, index) => (
-                <tr key={payment._id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
-                    {index + 1}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
-                    {payment.month}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
-                    {payment.year}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
-                    {payment.salary}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-800 border-b">
-                    {payment.transactionId}
-                  </td>
+                <tr
+                  key={payment._id}
+                  className="border-b hover:bg-gray-100 hover:text-primary"
+                >
+                  <td className="py-4 px-6">{index + 1}</td>
+                  <td className="py-4 px-6">{payment.month}</td>
+                  <td className="py-4 px-6">{payment.year}</td>
+                  <td className="py-4 px-6">{payment.salary}</td>
+                  <td className="py-4 px-6">{payment.transactionId}</td>
                 </tr>
               ))
             )}

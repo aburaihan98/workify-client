@@ -48,10 +48,8 @@ const Profile = () => {
         {/* Info Section */}
         <div className="md:ml-8 md:mt-0 text-left p-4">
           <h2 className="text-2xl font-bold  text-center md:text-left">
-            {name}
+            {name} <span className=" text-sm md:text-left">({role})</span>
           </h2>
-          <p className=" text-lg text-center md:text-left">({role})</p>
-
           <div className="mt-5 space-y-3">
             <p className="">
               <strong className="">Email:</strong> {email}
