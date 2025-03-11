@@ -83,6 +83,3 @@ npm install
 
 npm run dev
 
-## live project links:
-
-https://workify-3061a.web.app/
