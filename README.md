@@ -85,4 +85,4 @@ npm run dev
 
 ## live project links:
 
-https://workify-ada5e.web.app/
+https://workify-3061a.web.app/
