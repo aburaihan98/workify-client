@@ -1,7 +1,5 @@
 # Employee Management Website
 
-## Project Overview
-
 This Employee Management website allows HR to manage employees' workflows, monitor payment history, and approve payments. Employees can record their work, view payment history, and interact with HR. The website is secure, easy to use, and designed to streamline employee management tasks in any organization.
 
 ### Screenshot
