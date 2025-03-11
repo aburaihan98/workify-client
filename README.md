@@ -8,6 +8,16 @@ Employee Management Website with authentication, roles (Employee, HR, Admin), an
 ## Live link
 https://workify-3061a.web.app
 
+## Core Features
+
+- **Email & Password Authentication**: Secure login and registration system for employees and HR users.
+- **Role-based Access Control**: Different roles (Employee, HR, Admin) with specific permissions.
+- **Work Recording**: Employees can record their work hours and tasks.
+- **Payment History**: Employees can view their salary history and payment details.
+- **Employee Management**: HR can manage employee information and approve payments.
+- **Salary Management**: Admin can modify salaries and approve payment requests.
+- **Responsive Design**: Fully responsive layout that works across devices (desktop, tablet, and mobile).
+
 ## Technologies Used
 
 - **Frontend:**
@@ -23,16 +33,6 @@ https://workify-3061a.web.app
   - Express.js
   - MongoDB
   - JWT (for authentication and authorization)
-
-## Core Features
-
-- **Email & Password Authentication**: Secure login and registration system for employees and HR users.
-- **Role-based Access Control**: Different roles (Employee, HR, Admin) with specific permissions.
-- **Work Recording**: Employees can record their work hours and tasks.
-- **Payment History**: Employees can view their salary history and payment details.
-- **Employee Management**: HR can manage employee information and approve payments.
-- **Salary Management**: Admin can modify salaries and approve payment requests.
-- **Responsive Design**: Fully responsive layout that works across devices (desktop, tablet, and mobile).
 
 ## Dependencies
 
