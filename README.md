@@ -1,8 +1,5 @@
 # Employee Management Website
-
-## Project Overview
-
-This Employee Management website allows HR to manage employees' workflows, monitor payment history, and approve payments. Employees can record their work, view payment history, and interact with HR. The website is secure, easy to use, and designed to streamline employee management tasks in any organization.
+Employee Management Website with authentication, roles (Employee, HR, Admin), and workflows. The dashboard allows HR to monitor employee tasks, salaries, and payment history. Employees can add tasks, track hours, and view their salary history. Admins can manage users, assign HR roles, and approve payments. The project uses JWT for role-based access, integrates a payment gateway, and ensures responsiveness across devices.
 
 ### Screenshot
 
@@ -11,6 +8,16 @@ This Employee Management website allows HR to manage employees' workflows, monit
 ## Live link
 
 https://workify-3061a.web.app
+
+## Core Features
+
+- **Email & Password Authentication**: Secure login and registration system for employees and HR users.
+- **Role-based Access Control**: Different roles (Employee, HR, Admin) with specific permissions.
+- **Work Recording**: Employees can record their work hours and tasks.
+- **Payment History**: Employees can view their salary history and payment details.
+- **Employee Management**: HR can manage employee information and approve payments.
+- **Salary Management**: Admin can modify salaries and approve payment requests.
+- **Responsive Design**: Fully responsive layout that works across devices (desktop, tablet, and mobile).
 
 ## Technologies Used
 
@@ -27,16 +34,6 @@ https://workify-3061a.web.app
   - Express.js
   - MongoDB
   - JWT (for authentication and authorization)
-
-## Core Features
-
-- **Email & Password Authentication**: Secure login and registration system for employees and HR users.
-- **Role-based Access Control**: Different roles (Employee, HR, Admin) with specific permissions.
-- **Work Recording**: Employees can record their work hours and tasks.
-- **Payment History**: Employees can view their salary history and payment details.
-- **Employee Management**: HR can manage employee information and approve payments.
-- **Salary Management**: Admin can modify salaries and approve payment requests.
-- **Responsive Design**: Fully responsive layout that works across devices (desktop, tablet, and mobile).
 
 ## Dependencies
 
@@ -84,6 +81,3 @@ npm install
 
 npm run dev
 
-## live project links:
-
-https://workify-ada5e.web.app/
