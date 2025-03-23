@@ -14,11 +14,14 @@ import { RxDashboard } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
+import LoadingSpinner from "./../../Shared/LoadingSpinner";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [role, isLoading] = useRole();
   const { user } = useAuth();
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="z-[1000] bg-[#334854] text-gray-100 h-full">
