@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../Shared/Navbar/NavBar";
 
 function Banner() {
   return (
@@ -6,9 +7,10 @@ function Banner() {
       className="relative w-full h-[550px] bg-cover bg-center"
       style={{
         backgroundImage:
-          "url(https://media.istockphoto.com/id/2148737935/photo/doctor-coach-and-applause-with-team-in-meeting-for-collaboration-conference-or-health.jpg?s=1024x1024&w=is&k=20&c=Qe-c2BTBV7K63xgnwRXgVTQfdRuuehxrKHFVttdRBns=)",
+          "url(https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
       }}
     >
+      <Navbar />
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div className="text-center text-white px-4">

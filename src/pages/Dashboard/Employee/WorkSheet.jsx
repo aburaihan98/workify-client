@@ -6,6 +6,7 @@ import {
   DialogHeader,
 } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -145,7 +146,15 @@ const WorkSheet = () => {
   return (
     <div className="py-6 md:py-12">
       {/* Form Section */}
-      <div className="p-6 md:p-12">
+      <motion.div
+        animate={{ x: 0 }}
+        initial={{ x: -100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="p-6 md:p-12"
+      >
         <form
           onSubmit={handleAddSubmit}
           className="text-primary flex flex-col md:flex-row md:justify-center md:space-x-4 space-y-4 md:space-y-0 mb-1.5"
@@ -189,10 +198,18 @@ const WorkSheet = () => {
             Add
           </button>
         </form>
-      </div>
+      </motion.div>
 
       {/* Table Section */}
-      <div className="overflow-x-auto">
+      <motion.div
+        animate={{ x: 0 }}
+        initial={{ x: 100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="overflow-x-auto"
+      >
         <table className="min-w-full table-auto overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
@@ -234,7 +251,7 @@ const WorkSheet = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </motion.div>
 
       {/* Modal for Edit Task */}
       <Dialog open={open} handler={handleOpen} className="max-w-4xl w-full">

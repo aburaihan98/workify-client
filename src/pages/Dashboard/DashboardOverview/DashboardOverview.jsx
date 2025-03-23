@@ -71,14 +71,16 @@ const DashboardOverview = () => {
       </div>
 
       {/* Salary Chart */}
-      <div className="p-4 my-4 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Salary History</h2>
+      <div className="p-4 my-12 rounded-lg shadow-md bg-gradient-to-l from-[#078aa5] to-[#03ab82]">
+        <h2 className="text-xl font-semibold mb-4 text-white">
+          Salary History
+        </h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={paymentHistory}>
-            <XAxis dataKey="month" tick={{ fill: "#4A90E2" }} />
-            <YAxis tick={{ fill: "#4A90E2" }} />
+            <XAxis dataKey="month" tick={{ fill: "#fff" }} />
+            <YAxis tick={{ fill: "#fff" }} />
             <Tooltip />
-            <Bar dataKey="salary" fill="#4CAF50" />
+            <Bar dataKey="salary" fill="#60A5FA" />
           </BarChart>
         </ResponsiveContainer>
       </div>

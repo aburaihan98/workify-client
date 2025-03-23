@@ -33,17 +33,22 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-6 md:py-12" id="services">
+    <section
+      className="py-12 bg-gradient-to-l from-[#078aa5] to-[#03ab82]"
+      id="services"
+    >
       <div className="w-11/12 mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4 md:mb-8">Our Services</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <h2 className="text-white text-center text-5xl font-extrabold tracking-wide mb-8">
+          Our Services
+        </h2>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
             <div
               key={service.id}
-              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
+              className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:bg-blue-gray-50"
             >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+              <div className="text-5xl mb-4">{service.icon}</div>
+              <h3 className="text-2xl font-semibold text-gray-800 mb-2">
                 {service.title}
               </h3>
               <p className="text-gray-600">{service.description}</p>

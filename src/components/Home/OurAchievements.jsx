@@ -1,28 +1,58 @@
+const achive = [
+  {
+    title: "10+ Years",
+    desc: "Experience in the industry",
+    icon: "⏳",
+  },
+  {
+    title: "500+ Clients",
+    desc: "Satisfied with our services",
+    icon: "🤝",
+  },
+  {
+    title: "1000+ Projects",
+    desc: "Successfully delivered",
+    icon: "📦",
+  },
+  {
+    title: "Total Employees",
+    count: "250+",
+    icon: "👥",
+  },
+  {
+    title: "Employee Satisfaction",
+    count: "92%",
+    icon: "😊",
+  },
+  {
+    title: "Projects Completed",
+    count: "150+",
+    icon: "🚀",
+  },
+];
+
 function OurAchievements() {
   return (
-    <div className="py-6 md:py-12">
+    <section className="py-12 text-white bg-gradient-to-l from-[#078aa5] to-[#03ab82]">
       <div className="w-11/12 mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4 md:mb-8">Our Achievements</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-gray-700">10+ Years</h3>
-            <p className="text-gray-600">Experience in the industry</p>
-          </div>
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-gray-700">
-              500+ Clients
-            </h3>
-            <p className="text-gray-600">Satisfied with our services</p>
-          </div>
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-gray-700">
-              1000+ Projects
-            </h3>
-            <p className="text-gray-600">Successfully delivered</p>
-          </div>
+        <h2 className="text-center text-5xl font-extrabold tracking-wide mb-8">
+          Our Achievements
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {achive?.map((item, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <div className="text-6xl">{item.icon}</div>
+              <h3 className="text-3xl font-semibold  mt-4">{item.title}</h3>
+              {item.count ? (
+                <p className="text-xl  mt-2">{item.count}</p>
+              ) : (
+                <p className="text-xl  mt-2">{item.desc}</p>
+              )}
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

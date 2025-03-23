@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -35,9 +36,17 @@ function Progress() {
 
   return (
     <div className="py-6 md:py-12">
-      <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
+      <motion.h2
+        animate={{ x: 0 }}
+        initial={{ x: -100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="text-4xl font-semibold text-center mb-4 md:mb-8"
+      >
         Employee Work Progress
-      </h1>
+      </motion.h2>
 
       {/* Filters */}
       <div className="px-4 md:px-8 flex flex-wrap gap-4 md:gap-4 mb-8 justify-center">
@@ -84,15 +93,23 @@ function Progress() {
       </div>
 
       {/* Table to show work records */}
-      <div className="overflow-x-auto">
+      <motion.div
+        animate={{ x: 0 }}
+        initial={{ x: 100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="overflow-x-auto"
+      >
         <table className="min-w-full table-auto shadow-md overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
-              <th className="px-6 py-3 text-center">ID</th>
-              <th className="px-6 py-3 text-center">Employee Name</th>
-              <th className="px-6 py-3 text-center">Work Sheet</th>
-              <th className="px-6 py-3 text-center">Hours Worked</th>
-              <th className="px-6 py-3 text-center">Date</th>
+              <th className="px-6 py-3 text-left">ID</th>
+              <th className="px-6 py-3 text-left">Employee Name</th>
+              <th className="px-6 py-3 text-left">Work Sheet</th>
+              <th className="px-6 py-3 text-left">Hours Worked</th>
+              <th className="px-6 py-3 text-left">Date</th>
             </tr>
           </thead>
           <tbody className="">
@@ -108,12 +125,10 @@ function Progress() {
                   key={record._id}
                   className="border-b hover:bg-gray-100 hover:text-primary"
                 >
-                  <td className="px-6 py-4 text-center">{index + 1}</td>
-                  <td className="px-6 py-4 text-center">{record.name}</td>
-                  <td className="px-6 py-4 text-center">{record.tasks}</td>
-                  <td className="px-6 py-4 text-center">
-                    {record.hoursWorked}
-                  </td>
+                  <td className="px-6 py-4 ">{index + 1}</td>
+                  <td className="px-6 py-4 ">{record.name}</td>
+                  <td className="px-6 py-4 ">{record.tasks}</td>
+                  <td className="px-6 py-4 ">{record.hoursWorked}</td>
                   <td className="px-6 py-4 text-center">
                     {new Date(record.selectedDate).toLocaleDateString()}
                   </td>
@@ -122,7 +137,7 @@ function Progress() {
             )}
           </tbody>
         </table>
-      </div>
+      </motion.div>
     </div>
   );
 }

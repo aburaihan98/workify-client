@@ -1,12 +1,11 @@
 import React from "react";
-import EmployeeBenefits from "../../components/Home/EmployeeBenefits";
-import MeetOurTeam from "../../components/Home/MeetOurTeam";
-import WorkplaceInsights from "../../components/Home/WorkplaceInsights";
+import Business from "../../components/Home/Business";
+import FAQ from "../../components/Home/FAQ";
+import HRSoftwareSection from "../../components/Home/HRSoftwareSection";
 import Banner from "./../../components/Home/Banner";
 import OurAchievements from "./../../components/Home/OurAchievements";
 import Services from "./../../components/Home/Services";
 import Testimonials from "./../../components/Home/Testimonials";
-import WhyChooseUs from "./../../components/Home/WhyChooseUs";
 
 function Home() {
   return (
@@ -14,11 +13,10 @@ function Home() {
       <Banner />
       <Services />
       <Testimonials />
+      <Business />
+      <HRSoftwareSection />
       <OurAchievements />
-      <WhyChooseUs />
-      <MeetOurTeam />
-      <EmployeeBenefits />
-      <WorkplaceInsights />
+      <FAQ />
     </div>
   );
 }

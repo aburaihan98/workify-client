@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -23,11 +24,27 @@ function Payroll() {
 
   return (
     <div className="py-6 md:py-12">
-      <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
+      <motion.h2
+        animate={{ x: 0 }}
+        initial={{ x: -100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="text-4xl font-semibold text-center mb-4 md:mb-8"
+      >
         Employee Payment Requests
-      </h1>
+      </motion.h2>
 
-      <div className="overflow-x-auto">
+      <motion.div
+        animate={{ x: 0 }}
+        initial={{ x: 100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="overflow-x-auto"
+      >
         <table className="min-w-full table-auto overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
@@ -82,7 +99,7 @@ function Payroll() {
             ))}
           </tbody>
         </table>
-      </div>
+      </motion.div>
     </div>
   );
 }

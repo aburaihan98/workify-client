@@ -6,6 +6,7 @@ import {
   DialogHeader,
 } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -16,6 +17,9 @@ function VerifiedEmployees() {
   const [increasingSalary, setIncreasingSalary] = useState();
   const [open, setOpen] = useState(false);
   const [fireEmail, setFireEmail] = useState("");
+  const [salaryOpen, setSalaryOpen] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [currentSalary, setCurrentSalary] = useState(null);
   const [viewMode, setViewMode] = useState("table");
 
   //   get verified employees
@@ -47,16 +51,17 @@ function VerifiedEmployees() {
   };
 
   //   handle Salary Adjustment
-  const handleSalaryAdjustment = (email, salary) => {
-    console.log(increasingSalary, salary);
-
-    if (parseInt(increasingSalary) < parseInt(salary)) {
+  const handleSalaryAdjustment = () => {
+    if (
+      !increasingSalary ||
+      parseInt(increasingSalary) < parseInt(currentSalary)
+    ) {
       toast.warning("Salary can only be increased, not decreased.");
       return;
     }
 
     axiosSecure
-      .patch(`/salary-adjustment/${email}`, { increasingSalary })
+      .patch(`/salary-adjustment/${selectedEmployee}`, { increasingSalary })
       .then((result) => {
         if (result?.data?.modifiedCount) {
           refetch();
@@ -95,18 +100,27 @@ function VerifiedEmployees() {
   };
 
   const handleOpen = () => setOpen(!open);
+  const handleSalaryOpen = () => setSalaryOpen(!salaryOpen);
 
   if (isLoading) return <LoadingSpinner />;
 
   return (
     <>
       <div className="py-6 md:py-12">
-        <div className="flex justify-around items-center">
-          <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
+        <motion.div
+          animate={{ x: 0 }}
+          initial={{ x: -100 }}
+          transition={{
+            duration: 1,
+            ease: "linear",
+          }}
+          className="flex justify-around items-center"
+        >
+          <h2 className="text-4xl font-semibold text-center mb-4 md:mb-8">
             All Verified Employees
-          </h1>
+          </h2>
           {/* Toggle Button */}
-          <div className="text-center mb-4">
+          <div className="text-center mb-7">
             <button
               onClick={() =>
                 setViewMode((prevMode) =>
@@ -120,13 +134,21 @@ function VerifiedEmployees() {
                 : "Switch to Table View"}
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Conditional Rendering */}
         {viewMode === "table" ? (
-          <div className="overflow-x-auto">
+          <motion.div
+            animate={{ x: 0 }}
+            initial={{ x: 100 }}
+            transition={{
+              duration: 1,
+              ease: "linear",
+            }}
+            className="overflow-x-auto"
+          >
             <table className="min-w-full table-auto shadow-md overflow-hidden">
-              <thead className="bg-gray-200 text-gray-700">
+              <thead className="bg-gray-200 text-gray-700 dark:bg-[#1a202e]">
                 <tr>
                   <th className="py-3 px-6 text-left">ID</th>
                   <th className="py-3 px-6 text-left">Name</th>
@@ -180,31 +202,22 @@ function VerifiedEmployees() {
                       {employee?.salary}
                     </td>
                     <td className="py-4 px-6 text-center">
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() =>
-                            handleSalaryAdjustment(
-                              employee?.email,
-                              employee?.salary
-                            )
-                          }
-                          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-900"
-                        >
-                          Adjust Salary
-                        </button>
-                        <input
-                          className="w-36 text-white px-4 py-2 bg-green-500  rounded-md hover:bg-green-900 outline-none"
-                          onChange={(e) => setIncreasingSalary(e.target.value)}
-                          type="text"
-                          placeholder="Enter new salary"
-                        />
-                      </div>
+                      <button
+                        onClick={() => {
+                          handleSalaryOpen();
+                          setSelectedEmployee(employee?.email);
+                          setCurrentSalary(employee?.salary);
+                        }}
+                        className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-900"
+                      >
+                        Adjust Salary
+                      </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </motion.div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 p-4">
             {employees?.map((employee) => (
@@ -236,16 +249,12 @@ function VerifiedEmployees() {
 
                 {/* Salary Adjustment Section */}
                 <div className="flex flex-col gap-2">
-                  <input
-                    className="w-full text-gray-700 px-4 py-2 border rounded-md outline-none"
-                    onChange={(e) => setIncreasingSalary(e.target.value)}
-                    type="text"
-                    placeholder="Enter new salary"
-                  />
                   <button
-                    onClick={() =>
-                      handleSalaryAdjustment(employee?.email, employee?.salary)
-                    }
+                    onClick={() => {
+                      handleSalaryOpen();
+                      setSelectedEmployee(employee?.email);
+                      setCurrentSalary(employee?.salary);
+                    }}
                     className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-900"
                   >
                     Adjust Salary
@@ -279,6 +288,44 @@ function VerifiedEmployees() {
             onClick={() => {
               handleOpen();
               handleFire();
+            }}
+          >
+            <span>Confirm</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
+
+      {/* adjust salary modal  */}
+      <Dialog open={salaryOpen} handler={handleSalaryOpen}>
+        <DialogHeader>Salary Adjustment</DialogHeader>
+        <DialogBody>
+          <p className="mb-4 text-base font-medium">
+            Are you sure you want to adjust the salary to:{" "}
+            <span className="font-semibold text-blue-600">{currentSalary}</span>
+            ?
+          </p>
+          <input
+            onChange={(e) => setIncreasingSalary(e.target.value)}
+            type="text"
+            placeholder="Enter new salary"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </DialogBody>
+
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleSalaryOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          <Button
+            variant="gradient"
+            color="green"
+            onClick={() => {
+              handleSalaryAdjustment(), handleSalaryOpen();
             }}
           >
             <span>Confirm</span>

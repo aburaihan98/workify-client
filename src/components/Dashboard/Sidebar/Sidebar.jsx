@@ -52,20 +52,20 @@ const Sidebar = () => {
         <nav className="pt-4 min-h-screen">
           <ul>
             <Link to="/dashboard">
-              <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
+              <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
                 <RxDashboard className="mr-2" />
-                Dashboard
+                Overview
               </li>
             </Link>
             {role === "employee" && (
               <>
                 <Link to="/dashboard/work-sheet">
-                  <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
+                  <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
                     <FaClipboard className="mr-2" /> Work Sheet
                   </li>
                 </Link>
                 <Link to="/dashboard/payment-history">
-                  <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
+                  <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
                     <FaMoneyBill className="mr-2" /> Payment History
                   </li>
                 </Link>
@@ -75,12 +75,12 @@ const Sidebar = () => {
             {role === "hr" && (
               <>
                 <Link to="/dashboard/employee-list">
-                  <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
+                  <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9]] flex items-center">
                     <FaUserAlt className="mr-2" /> Employee List
                   </li>
                 </Link>
                 <Link to="/dashboard/progress">
-                  <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
+                  <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
                     <FaChartLine className="mr-2" /> Progress
                   </li>
                 </Link>
@@ -90,30 +90,30 @@ const Sidebar = () => {
             {role === "admin" && (
               <>
                 <Link to="/dashboard/all-employee-list">
-                  <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
-                    <FaListAlt className="mr-2" /> All Employee List
+                  <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
+                    <FaListAlt className="mr-2" /> Verified Employee
                   </li>
                 </Link>
                 <Link to="/dashboard/payroll">
-                  <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
+                  <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
                     <FaMoneyBill className="mr-2" /> Payroll
                   </li>
                 </Link>
                 <Link to="/dashboard/contactUs-message">
-                  <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
-                    <FaEnvelope className="mr-2" /> Contact Us Message
+                  <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
+                    <FaEnvelope className="mr-2" /> Message
                   </li>
                 </Link>
               </>
             )}
             <hr className="my-2 border-gray-300" />
             <Link to="/">
-              <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
+              <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
                 <FaHome className="mr-2" /> Home
               </li>
             </Link>
             <Link to="/dashboard/profile">
-              <li className="px-8 py-2 hover:bg-gray-200 hover:text-[#334854] flex items-center">
+              <li className="px-8 py-4 hover:bg-[#1a202e] hover:text-[#c5cdd9] flex items-center">
                 <FaUser className="mr-2" /> Profile
               </li>
             </Link>

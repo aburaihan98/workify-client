@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -63,20 +64,36 @@ function PaymentHistory() {
 
   return (
     <div className="py-6 md:py-12">
-      <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
+      <motion.h2
+        animate={{ x: 0 }}
+        initial={{ x: -100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="text-4xl font-semibold text-center mb-4 md:mb-8"
+      >
         Payment History
-      </h1>
+      </motion.h2>
 
       {/* Payment History Table */}
-      <div className="overflow-x-auto">
+      <motion.div
+        animate={{ x: 0 }}
+        initial={{ x: 100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="overflow-x-auto"
+      >
         <table className="min-w-full table-auto overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
-              <th className="py-3 px-6 text-left">ID</th>
-              <th className="py-3 px-6 text-left">Month</th>
-              <th className="py-3 px-6 text-left">Year</th>
-              <th className="py-3 px-6 text-left">Amount</th>
-              <th className="py-3 px-6 text-left">Transaction ID</th>
+              <th className="py-3 px-6 text-center">ID</th>
+              <th className="py-3 px-6 text-center">Month</th>
+              <th className="py-3 px-6 text-center">Year</th>
+              <th className="py-3 px-6 text-center">Amount</th>
+              <th className="py-3 px-6 text-center">Transaction ID</th>
             </tr>
           </thead>
           <tbody>
@@ -98,17 +115,19 @@ function PaymentHistory() {
                   key={payment._id}
                   className="border-b hover:bg-gray-100 hover:text-primary"
                 >
-                  <td className="py-4 px-6">{index + 1}</td>
-                  <td className="py-4 px-6">{payment.month}</td>
-                  <td className="py-4 px-6">{payment.year}</td>
-                  <td className="py-4 px-6">{payment.salary}</td>
-                  <td className="py-4 px-6">{payment.transactionId}</td>
+                  <td className="py-4 px-6 text-center">{index + 1}</td>
+                  <td className="py-4 px-6 text-center">{payment.month}</td>
+                  <td className="py-4 px-6 text-center">{payment.year}</td>
+                  <td className="py-4 px-6 text-center">{payment.salary}</td>
+                  <td className="py-4 px-6 text-center">
+                    {payment.transactionId}
+                  </td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
-      </div>
+      </motion.div>
 
       {/* Pagination Controls */}
       <div className="flex flex-col items-center mt-8">

@@ -10,7 +10,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../../assets/logo.png";
 import useAuth from "../../../hooks/useAuth";
-import ThemeToggle from "../../ThemeToggle";
 
 const Navbar = () => {
   const { user, userLogout } = useAuth();
@@ -20,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-primary shadow-md sticky top-0 z-50">
+    <nav className="w-full backdrop-blur-sm bg-black/50 shadow-md fixed z-50">
       <div className="w-11/12 mx-auto flex items-center justify-between py-4">
         {/* Logo */}
         <NavLink
@@ -30,9 +29,6 @@ const Navbar = () => {
           <img src={Logo} alt="Company Logo" className="h-12 w-12 rounded" />
         </NavLink>
         <div className="flex items-center gap-6">
-          <div className="hidden lg:block">
-            <ThemeToggle />
-          </div>
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
             <NavLink
@@ -106,9 +102,7 @@ const Navbar = () => {
         </div>
         {/* Mobile Menu Button */}
         <div className="lg:hidden flex items-center">
-          <div className="lg:hidden">
-            <ThemeToggle />
-          </div>
+          <div className="lg:hidden"></div>
           <Menu>
             <MenuHandler>
               <button className="flex items-center lg:hidden p-2 rounded focus:outline-none">

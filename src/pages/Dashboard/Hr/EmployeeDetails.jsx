@@ -50,7 +50,7 @@ function EmployeeDetails() {
   }));
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6  mx-auto">
       <div className="flex justify-center items-center m-4">
         <div className="flex items-center mb-2">
           <img
@@ -69,17 +69,17 @@ function EmployeeDetails() {
           </div>
         </div>
       </div>
-      <div>
-        <h2 className="text-2xl font-semibold mb-4">Salary Chart</h2>
-        <div className="bg-white p-4 shadow-md rounded-lg">
+      <div className="bg-gradient-to-l from-[#078aa5] to-[#03ab82] text-white p-4 my-12 rounded-lg shadow-md">
+        <h2 className="text-2xl font-semibold mb-4 ">Salary Chart</h2>
+        <div className="p-4 shadow-md rounded-lg">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="monthYear" />
-              <YAxis />
+              <XAxis dataKey="monthYear" tick={{ fill: "#fff" }} />
+              <YAxis tick={{ fill: "#fff" }} />
               <Tooltip />
               <Legend />
-              <Bar dataKey="salary" fill="#82ca9d" />
+              <Bar dataKey="salary" fill="#60A5FA" />
             </BarChart>
           </ResponsiveContainer>
         </div>

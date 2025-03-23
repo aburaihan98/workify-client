@@ -109,7 +109,7 @@ const RegistrationPage = () => {
 
   return (
     <div className="w-11/12 md:w-8/12 mx-auto py-6">
-      <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
+      <h2 className="text-3xl font-bold mb-4 text-center">Register</h2>
       <div className="card bg-base-100 shadow-2xl rounded-lg p-8">
         <form onSubmit={handleSubmit} className="text-black">
           <div className="flex flex-col md:flex-row gap-4 lg:gap-8">

@@ -14,6 +14,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -158,16 +159,32 @@ function EmployeeList() {
 
   return (
     <div className="py-6 md:py-12">
-      <h1 className="text-3xl font-semibold text-center mb-4 md:mb-8">
+      <motion.h2
+        animate={{ x: 0 }}
+        initial={{ x: -100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="text-3xl font-semibold text-center mb-4 md:mb-8"
+      >
         Employee Table
-      </h1>
-      <div className="overflow-x-auto">
+      </motion.h2>
+      <motion.div
+        animate={{ x: 0 }}
+        initial={{ x: 100 }}
+        transition={{
+          duration: 1,
+          ease: "linear",
+        }}
+        className="overflow-x-auto"
+      >
         <table className="min-w-full table-auto overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="py-3 px-4">
+                  <th key={header.id} className="py-3 px-6 text-left">
                     {flexRender(
                       header.column.columnDef.header,
                       header.getContext()
@@ -184,7 +201,7 @@ function EmployeeList() {
                 className="border-b hover:bg-gray-100 hover:text-primary"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="py-3 px-6 text-center">
+                  <td key={cell.id} className="py-3 px-6">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -225,7 +242,7 @@ function EmployeeList() {
             Next
           </button>
         </div>
-      </div>
+      </motion.div>
       {/* Modal */}
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>Pay Employee</DialogHeader>
